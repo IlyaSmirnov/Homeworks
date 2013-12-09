@@ -1,5 +1,5 @@
-#include "unWeightedGraph.h"
-#include "List.h"
+#include "unweightedGraph.h"
+#include "list.h"
 
 using namespace graph;
 using namespace list;
@@ -67,10 +67,8 @@ bool check(Graph graph[], bool *&visited)
 {
 	for (int i = 1; i <= graph->size; ++i)
 		if (!visited[i])
-		{
 			return false;
-		}
-
+	
 	return true;
 }
 

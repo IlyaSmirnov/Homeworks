@@ -1,7 +1,6 @@
 #include "list.h"
 
 using namespace list;
-using namespace std;
 
 List list::createList()
 {
@@ -32,11 +31,8 @@ void list::addElement(List &list, int value)
 		list.tail->next = temp;
 		list.tail = temp;
 	}
-	else
-	{
-		
+	else	
 		list.head = list.tail = temp;
-	}
 }
 
 void list::deleteElement(List &list, ListElement *&listElement)
@@ -66,23 +62,4 @@ void list::deleteElement(List &list, ListElement *&listElement)
 			return;
 		}
 	}
-}
-
-void list::show(List &list)
-{
-	if (list.head != nullptr)
-	{
-
-		cout << " PATH:";
-		ListElement *temp = list.head;
-
-		while (temp != nullptr)
-		{
-			cout <<  ' ' << temp->value;
-			temp = temp->next;
-		}
-	}
-
-	cout << endl;
-	return;
 }

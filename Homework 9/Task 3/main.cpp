@@ -1,4 +1,5 @@
 #include "unweightedGraph.h"
+#include "conquer.h"
 #include <stdlib.h>
 #include <fstream>
 
@@ -7,7 +8,7 @@ using namespace graph;
 
 int main()
 {
-	cout << "Welcome to the program which print connected components of the graph" << endl;
+	cout << "Welcome to the program which will tell you when Nazis will come to your town" << endl;
 	
 	fstream input("input.txt");
 
@@ -28,7 +29,8 @@ int main()
 		{
 			int roadEnd1 = 0;
 			int roadEnd2 = 0;
-			
+			int len = 0;
+
 			input >> roadEnd1 >> roadEnd2;
 
 			addPath(graph[roadEnd1], roadEnd2);

@@ -1,4 +1,4 @@
-#include "list.h"
+#include "List.h"
 
 using namespace list;
 using namespace std;
@@ -6,7 +6,8 @@ using namespace std;
 List list::createList()
 {
 	List list;
-	list.head = list.tail = nullptr;
+	list.head = nullptr;
+	list.size = 0;
 
 	return list;
 }
@@ -21,25 +22,44 @@ void list::deleteList(List &list)
 	}
 }
 
-void list::addElement(List &list, int value)
+void list::addElementToList(List &list, String string)
 {
 	ListElement *temp = new ListElement;
-	temp->value = value;
+	temp->string = string;
 	temp->next = nullptr;
+	temp->number = 1;
 
-	if (list.head != nullptr)
+	if (list.head == nullptr)
 	{
-		list.tail->next = temp;
-		list.tail = temp;
+		list.head = temp;
+		list.size++;
+
+		return;
 	}
 	else
 	{
+		ListElement *i = list.head;
+		while (i != nullptr)
+		{
+			if (isEqualStrings(i->string, string))
+			{
+				++i->number;
+
+				return;
+			}
+
+			i = i->next;
+		}
 		
-		list.head = list.tail = temp;
+		temp->next = list.head;
+		list.head = temp;
+		list.size++;
+
+		return;
 	}
 }
 
-void list::deleteElement(List &list, ListElement *&listElement)
+void list::deleteElementInList(List &list, ListElement *&listElement)
 {
 	ListElement *counter = list.head;
 	ListElement *temp;
@@ -68,21 +88,23 @@ void list::deleteElement(List &list, ListElement *&listElement)
 	}
 }
 
-void list::show(List &list)
+void list::showList(List &list)
 {
 	if (list.head != nullptr)
 	{
-
-		cout << " PATH:";
 		ListElement *temp = list.head;
 
 		while (temp != nullptr)
 		{
-			cout <<  ' ' << temp->value;
+			cout << stringToChar(temp->string) << ' ' << temp->number << endl;
 			temp = temp->next;
 		}
 	}
 
-	cout << endl;
 	return;
+}
+
+bool list::isEmptyList(List list)
+{
+	return (list.head == nullptr);
 }
