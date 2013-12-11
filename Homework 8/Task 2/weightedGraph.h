@@ -4,20 +4,19 @@ namespace graph
 {
 	struct Path
 	{
-		int vertex1;
-		int vertex2;
+		int vertex;
 		int weight;
 		Path *next;
 	};
 
-	struct Graph
+	struct GraphVertex
 	{
 		Path *head;
-		int size;
 	};
 
-	Graph* createGraph(int n, int m);
-	void deleteGraph(Graph *&graph);
+	GraphVertex createGraph();
+	void deleteGraphVertex(GraphVertex &graph);
 
-	void addPath(Graph *&graph, int vertex1, int vertex2, int weight);
+	void addPath(GraphVertex &graph, int vertex, int weight);
+	int numberOfNeighbour(GraphVertex graph);
 }

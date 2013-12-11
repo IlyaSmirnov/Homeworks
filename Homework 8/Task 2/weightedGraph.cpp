@@ -3,44 +3,57 @@
 using namespace graph;
 using namespace std;
 
-Graph *graph::createGraph(int n, int m)
+GraphVertex graph::createGraph()
 {
-	Graph *graph = new Graph[m];
+	GraphVertex *graph = new GraphVertex;
 	graph->head = nullptr;
-	graph->size = n;
-	
-	return graph;
+
+	return *graph;
 }
 
-void graph::deleteGraph(Graph *&graph)
+void graph::deleteGraphVertex(GraphVertex &graph)
 {
-	while (graph->head != nullptr)
+	while (graph.head != nullptr)
 	{
-		Path *temp = graph->head->next;
-		delete graph->head;
-		graph->head = temp;
+		Path *temp = graph.head->next;
+		delete graph.head;
+		graph.head = temp;
 	}
 
 	return;
 }
 
-void graph::addPath(Graph *&graph, int vertex1, int vertex2, int weight)
+void graph::addPath(GraphVertex &graph, int vertex, int weight)
 {
 	Path *temp = new Path;
-	temp->vertex1 = vertex1;
-	temp->vertex2 = vertex2;
+	temp->vertex = vertex;
 	temp->weight = weight;
-	
-	if (graph->head != nullptr)
+
+	if (graph.head != nullptr)
 	{
-		temp->next = graph->head;
-		graph->head = temp;
+		temp->next = graph.head;
+		graph.head = temp;
 	}
 	else
 	{
 		temp->next = nullptr;
-		graph->head = temp;
+		graph.head = temp;
 	}
 
 	return;
+}
+
+int graph::numberOfNeighbour(GraphVertex graph)
+{
+	Path *temp = graph.head;
+
+	int result = 0;
+
+	while (temp != nullptr)
+	{
+		temp = temp->next;
+		++result;
+	}
+
+	return result;
 }
