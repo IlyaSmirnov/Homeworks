@@ -46,14 +46,16 @@ int main()
 				}
 
 				++i;
+				word[wordLength] = '\0';
 				addToHashTable(hashTable, charToStirng(word));
 			}
 		}
 		
 		printHashTable(hashTable);
-		printf("%s%L\n", "Load factor is ", loadFactor(hashTable));
+		printf("%s%f\n", "Load factor is ", loadFactor(hashTable));
 		printf("%s%d\n", "Average length of chain is ", averageLength(hashTable));
 		printf("%s%d\n", "Max length of chain is ", hashTable.tableElement[maxLength(hashTable)].size);
+		printf("%s\n", "Max length chain is ");
 		showList(hashTable.tableElement[maxLength(hashTable)]);
 		printf("%s%d\n", "Amount of words ", amount(hashTable));
 		printf("%s%d\n", "Amount of empty cells is ", empty(hashTable));

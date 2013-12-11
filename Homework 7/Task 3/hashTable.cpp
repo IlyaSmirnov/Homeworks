@@ -51,7 +51,9 @@ void hashTable::printHashTable(HashTable hashTable)
 
 double hashTable::loadFactor(HashTable &hashTable)
 {
-	return amount(hashTable) * 1.0 / hashTable.size;
+	double temp = amount(hashTable) * 1.0 / hashTable.size;
+
+	return temp;
 }
 
 int hashTable::maxLength(HashTable hashTable)
@@ -70,11 +72,11 @@ int hashTable::maxLength(HashTable hashTable)
 
 int hashTable::averageLength(HashTable hashTable)
 {
-	double sum = 0;
+	int sum = 0;
 	for (int i = 0; i < hashTable.size; i++)
 		sum += hashTable.tableElement[i].size;
 
-	return sum / hashTable.size;
+	return sum / (hashTable.size - empty(hashTable));
 }
 
 int hashTable::amount(HashTable hashTable)
