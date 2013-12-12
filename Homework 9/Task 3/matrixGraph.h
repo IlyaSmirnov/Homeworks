@@ -5,6 +5,7 @@ namespace graph
 	struct Path
 	{
 		int vertex;
+		int weight;
 		Path *next;
 	};
 
@@ -12,11 +13,11 @@ namespace graph
 	{
 		Path *head;
 		int size;
+		bool visit;
 	};
 
-	Graph createGraph();
+	int** createGraph();
 	void deleteGraph(Graph &graph);
 
-	void addPath(Graph &graph, int vertex);
-	void printGraph(Graph *&graph);
+	void addPath(Graph &graph, int vertex, int weight);
 }

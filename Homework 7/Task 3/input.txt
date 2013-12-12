@@ -1,0 +1,179 @@
+PART I
+AT THE CODEFACE
+
+Programmers write programs. It doesn’t take a 
+genius to figure that one out. But there is a more 
+subtle distinction: Only good programmers habitually 
+write good code. Bad programmers . . . don’t. They 
+create messes that take more effort to fix than they 
+did to write.
+	Which would you rather be?
+	Code craft starts at the codeface; it’s where we love to be. We programmers are never happier than when immersed in an editor, bashing out line after line of perfectly formed and well-executed source code. We’d be quite happy if the world around us disappeared in a puff of boolean logic. Sadly, the Real World isn’t going anywhere—and it doesn’t seem willing to keep itself to itself.
+	Around your carefully crafted code, the world is in a chaotic state of 
+change. Almost every software project is characterized by flux: changing 
+requirements, changing budgets, changing deadlines, changing priorities, 
+and changing teams. These all conspire to make writing good code a very 
+difficult job. Welcome to the Real World.
+	Good programmers naturally write neat code when left to their own 
+devices. But they also have an array of battle tactics to help write robust 
+code on the front line. They know how to defend themselves against the 
+harsh realities of the software factory and write code that can survive the 
+whirlwinds of change.
+	That’s what we’re looking at here. This first section delves into the 
+painfully practical, gory details of code construction, the nuts and bolts of 
+writing source code statements. You’ll learn strategies to keep yourself afloat
+on the turbulent software development ocean and will be challenged to 
+improve your code-writing skills.
+	These chapters focus on the following issues:
+Chapter 1: On the Defensive
+Defensive programming: How to write robust code when the world is 
+conspiring against you.
+
+Chapter 2: The Best Laid Plans
+	Good presentation: why it’s important and how to present code well.
+
+Chapter 3: What’s in a Name?
+Choosing clear names for the parts of your program.
+
+Chapter 4: The Write Stuff
+Self-documenting code. Practical strategies to explain code when you 
+can’t write a whole novel.
+
+Chapter 5: A Passing Comment
+Effective techniques for writing the most appropriate code comments.
+
+Chapter 6: To Err Is Human
+Handling errors: How to manage operations that might go wrong, and 
+what to do when they do.
+
+	These form the path to sound code in an unsound world; they are solid 
+code-writing techniques that should become second nature. If you don’t 
+write clear, understandable,defensive, easily testable, easily maintainable 
+software, then you’ll be distracted by tedious code-related problems when 
+you should be preparing for what the software factory will throw at you next.
+
+ON THE
+DEFENSIVE
+Defensive Programming Techniques
+for Robust Code
+
+In this chapter:
+What is defensive programming
+Strategies for safer code
+Constraints and assertions
+We have to distrust each other. It’s our only defense 
+against betrayal.
+—Tennessee Williams
+When my daughter was 10 months old, she liked 
+playing with wooden bricks.Well, she liked playing 
+with wooden bricks and me. I’d build a tower as 
+high as I could, and then with a gentle nudge of 
+the bottom brick, she’d topple the whole thing and 
+let out a little whoop of delight. I didn’t build these 
+towers for their strength—it would have been pointless if I did. If I had really wanted a sturdy tower, 
+then I’d have built it in a very different way. I’d 
+have shorn up a foundation and started with a wide 
+base, rather than just quickly stacking blocks upon 
+each other and building as high as possible.
+          Too many programmers write their code like 
+flimsy towers of bricks; a gentle unexpected prod 
+to the base, and the whole thing falls over. Code 
+builds up in layers, and weneed to use techniques 
+that ensure that each layer is sound so that we can 
+build upon it.
+
+Toward Good Code
+There is a huge difference between code that seems to work, correct code, and 
+good code. M.A. Jackson wrote, “The beginning of wisdom for a software 
+engineer is to recognize the difference between getting a program to work, 
+and getting it right.” (Jackson 75) There isa difference:
+It is easy to write code that works most of the time.You feed it the usual 
+set of inputs; it gives the usual set of outputs. But give it something surprising, and it might just fall over.
+Correct code won’t fall over. For all possible sets of input, the output will 
+be correct. But usually the set of all possible inputs is ridiculously large 
+and hard to test.
+However, not all correct code is good code—the logic may be hard to 
+follow, the code may be contrived, and it may be practically impossible 
+to maintain.
+
+	By these definitions, good code is what we should aim for. It is robust, 
+efficient enough and, of course, correct. Industrial strength code will not 
+crash or produce incorrect results when given unusual inputs. It will also 
+satisfy all other requirements, including thread safety, timing constraints, 
+and re-entrancy.
+	It’s one thing to write this good code in the comfort of your own home, a 
+carefully controlled environment. It’s an entirely different prospect to do so in 
+the heat of the software factory, where the world is changing around you, the 
+codebase is rapidly evolving, and you’re constantly being faced with grotesque 
+legacy code—archaic programs written by code monkeys that are now long 
+gone. Try writing good code when the world is conspiring to stop you!
+	In this torturous environment, how do you ensure that your code is 
+industrial strength? Defensive programming helps.
+	While there are many ways to construct code (object-oriented approaches, 
+component based models, structured design, Extreme Programming, etc.), 
+defensive programming is an approach that can be applied universally. It’s 
+not so much a formal methodology as an informal set of basic guidelines. 
+Defensive programming is not a magical cure-all, but a practical way to 
+prevent a pile of potential coding problems.
+
+Assume the Worst
+When you write code, it’s all too easy to make a set of assumptions about how 
+it should run, how it will be called, what the valid inputs are, and so on. You 
+won’t even realize that you’ve assumed anything, because it all seems obvious 
+to you. You’ll spend months happily crafting code, as these assumptions fade 
+and distort in your mind.
+	Or you might pick up some old code to make a vital last-minute fix when 
+the product’s going out the door in 10 minutes. With only enough time for 
+a brief glance at its structure, you’ll make assumptions about how the code works. There’s no time to perform full literary criticism, and until you get a 
+chance to prove the code is actually doing what you think it’s doing, assumptions are all you have.
+	Assumptions cause us to write flawed software. It’s easy to assume:
+The function won’t ever be called like that. I will always be passed valid 
+parameters only.
+This piece of code will always work; it will never generate an error.
+No one will ever try to access this variable if I document it For internal 
+	use only.
+
+	When we program defensively, we shouldn’t make any assumptions. We 
+should never assume that it can’t happen. We should never assume that the 
+world works as we’d expect it to work.
+	Experience tells us that the only thing you can be certain about is this: 
+Your code will somehow, someday, go wrong. Someone will do a dumb thing. 
+Murphy’s Law puts it this way: “If it can be used incorrectly, it will.” Listen to 
+that man—he spoke from experience. Defensive programming prevents 
+these accidents by foreseeing them, or at least fore-guessing them—figuring 
+out what might go wrong at each stage in the code, and guarding against it.
+	Is this paranoid? Perhaps. But it doesn’t hurt to be a little paranoid. In 
+fact, it makes a lot of sense. As your code evolves, you will forget the original 
+set of assumptions you made (and real code does evolve). 
+Other programmers won’t have any knowledge of the assumptions in your 
+head, or else they will just make their own invalid assumptions about what 
+your code can do. Software evolution exposes weaknesses,and code growth 
+hides original simple assumptions. A little paranoia at the outset can make 
+code a lot more robust in the long run.
+
+KEY CONCEPT 	Assume nothing. Unwritten assumptions continually cause faults, particularly as 
+		code grows
+	
+	Add to this the fact that things neither you nor your users have any 
+control over can go wrong: Disks fill up, networks fail, and computers crash. 
+Bad things happen. Remember, it’s never actually your program that fails—
+the software always does what you told it to. The actual algorithms, or 
+perhaps the client code, are what introduce faults into the system.
+	As you write more code, and as you work through it faster and faster, the 
+likelihood of making mistakes grows and grows. Without adequate time to 
+verify each assumption, you can’t write robust code. Unfortunately, on the 
+programming front line, there’s rarely any opportunity to slow down, take 
+	, and linger over a piece of code. The world is just moving too fast, and 
+programmers need to keep up. Therefore, we should grasp every opportunity 
+to reduce errors, and defensive practices are one of our main weapons.
+
+What Is Defensive Programming?
+As the name suggests, defensive programming is careful, guarded programming. To construct reliable software, we design every component in the 
+system so that it protectsitself as much as possible. We smash unwritten 
+assumptions by explicitly checking for them in the code. This is an attempt 
+to prevent, or at least observe, when our code is called in a way that will 
+exhibit incorrect behavior.
+	Defensive programming enables us to detect minor problems early on, 
+rather than get bitten by them laterwhen they’ve escalated into major 
+disasters. All too often, you’ll see “professional” developers rush out code 
+without thinking. The story goes something like this:
