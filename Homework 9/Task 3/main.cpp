@@ -1,43 +1,86 @@
-#include "unweightedGraph.h"
-#include "conquer.h"
-#include <stdlib.h>
+#include "matrixGraph.h"
 #include <fstream>
 
 using namespace std;
 using namespace graph;
 
+int **prim(int **graph, int size)
+{
+	int **spanningTree = createGraph(size);
+
+	bool visited[100000];
+	int minWeights[100000];
+	int minVerrtexs[100000];
+	
+	for (int i = 0; i < size; ++i)
+	{
+		visited[i] = false;
+		minWeights[i] = 100000;
+		minVerrtexs[i] = -1;
+	}
+
+	int current = 0;
+
+	while (true)
+	{
+		visited[current] = true;
+
+		int minVertex = -1;
+		int minWeight = 1000000000;
+
+		for (int i = 0; i < size; ++i)
+			if (!visited[i])
+			{
+				if ((graph[i][current] < minWeights[i]) && (graph[i][current] != 0))
+				{
+					minWeights[i] = graph[current][i];
+					minVerrtexs[i] = current;
+				}
+
+				if (minWeights[i] < minWeight)
+				{
+					minWeight = minWeights[i];
+					minVertex = i;
+				}
+			}
+		
+		if (minVertex != -1)
+		{
+			spanningTree[minVerrtexs[minVertex]][minVertex] = minWeights[minVertex];
+			spanningTree[minVertex][minVerrtexs[minVertex]] = minWeights[minVertex];
+
+			current = minVertex;
+		}
+		else
+			return spanningTree;
+	}
+}
+
 int main()
 {
-	cout << "Welcome to the program which will tell you when Nazis will come to your town" << endl;
-	
+	cout << "Welcome to the program of the Prim's algorithm" << endl;
+
 	fstream input("input.txt");
 
 	if (!input.is_open())
-		cout << "File input.txt doesn't exist" << endl;
+		cout << "File with this name doesn't exist" << endl;
 	else
 	{
-		int n = 0;
-		input >> n ;
+		int size = 0;
+		input >> size;
 
-		Graph *graph = new Graph[1000];
-		graph->size = n;
+		int **graph = createGraph(size);
 
-		for (int i = 1; i <= n; ++i)
-			graph[i] = createGraph();
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j < size; j++)
+					input >> graph[i][j];
 
-		while (!input.eof())
-		{
-			int roadEnd1 = 0;
-			int roadEnd2 = 0;
-			int len = 0;
+		int **spanningTree = prim(graph, size);
 
-			input >> roadEnd1 >> roadEnd2;
+		show(spanningTree, size);
 
-			addPath(graph[roadEnd1], roadEnd2);
-			addPath(graph[roadEnd2], roadEnd1);
-		}
-
-		printGraph(graph);
+		deleteGraph(graph, size);
+		deleteGraph(spanningTree, size);
 	}
 
 	input.close();

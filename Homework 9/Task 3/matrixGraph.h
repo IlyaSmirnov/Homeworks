@@ -1,23 +1,9 @@
 #pragma once
+#include <iostream>
 
 namespace graph
 {
-	struct Path
-	{
-		int vertex;
-		int weight;
-		Path *next;
-	};
-
-	struct Graph
-	{
-		Path *head;
-		int size;
-		bool visit;
-	};
-
-	int** createGraph();
-	void deleteGraph(Graph &graph);
-
-	void addPath(Graph &graph, int vertex, int weight);
+	int** createGraph(int size);
+	void deleteGraph(int **graph, int size);
+	void show(int **graph, int size);
 }

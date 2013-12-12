@@ -1,45 +1,40 @@
-#include "weightedGraph.h"
+#include "matrixGraph.h"
 
 using namespace graph;
 using namespace std;
 
-Graph graph::createGraph()
+int** graph::createGraph(int size)
 {
-	Graph graph;
-	graph.head = nullptr;
-	graph.visit = false;
-	graph.size = 0;
+	int **graph = new int *[size];
+
+	for (int i = 0; i < size; ++i)
+		graph[i] = new int[size];
+	
+	for (int i = 0; i < size; ++i)
+		for (int j = 0; j < size; ++j)
+			graph[i][j] = 0;
 
 	return graph;
 }
 
-void graph::deleteGraph(Graph &graph)
+void graph::deleteGraph(int **graph, int size)
 {
-	while (graph.head != nullptr)
-	{
-		Path *temp = graph.head->next;
-		delete graph.head;
-		graph.head = temp;
-	}
+	for (int i = 0; i < size; ++i)
+		delete [] graph[i];
+
+	delete[] graph;
 
 	return;
 }
 
-void graph::addPath(Graph &graph, int vertex, int weight)
+void graph::show(int **graph, int size)
 {
-	Path *temp = new Path;
-	temp->vertex = vertex;
-	temp->weight = weight;
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = 0; j < size; ++j)
+			cout << graph[i][j] << " ";
 
-	if (graph.head != nullptr)
-	{
-		temp->next = graph.head;
-		graph.head = temp;
-	}
-	else
-	{
-		temp->next = nullptr;
-		graph.head = temp;
+		cout << "\n";
 	}
 
 	return;
