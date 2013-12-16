@@ -2,6 +2,73 @@
 
 using namespace sortedListNS;
 
+void deleteElement(SortedList &list, ListElement* listElement)
+{
+	ListElement *counter = list.head;
+	ListElement *temp;
+
+	if (listElement == list.head)
+	{
+		temp = list.head;
+		list.head = list.head->next;
+
+		delete temp;
+		return;
+	}
+
+	if ((list.head != nullptr) && (list.head != listElement))
+	{
+		while ((counter != nullptr) && (counter->next != listElement))
+			counter = counter->next;
+
+		if (counter)
+		{
+			temp = counter->next;
+			counter->next = counter->next->next;
+
+			delete temp;
+			return;
+		}
+	}
+	else
+		if (list.head != listElement)
+		{
+			temp = listElement;
+			list.head = listElement->next;
+
+			delete temp;
+			return;
+		}
+}
+
+void removeValue(SortedList &list, BinaryTree tree)
+{
+	ListElement *temp = list.head;
+
+	while (temp != nullptr)
+	{
+		if (temp->tree.root->symbol == tree.root->symbol)
+		{
+			deleteElement(list, temp);
+
+			return;
+		}
+
+		temp = temp->next;
+	}
+
+	return;
+}
+
+BinaryTreeNode *pop(SortedList &list)
+{
+	BinaryTreeNode *temp = list.head->tree.root;
+
+	list.head = list.head->next;
+
+	return temp;
+}
+
 SortedList sortedListNS::createSortedList()
 {
 	SortedList list;
@@ -35,11 +102,15 @@ void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int c
 
 	ListElement *current = list.head;
 	
-	while ((current != nullptr) && tree.root->symbol != '0')
+	while ((current != nullptr) && (tree.root->symbol != '0'))
 	{
 		if (tree.root->symbol == current->tree.root->symbol)
 		{
-			++current->count;
+			BinaryTree tempTree = createTempTree(nullptr, nullptr, current->tree.root->symbol);
+			int tempCount = ++current->count;
+			removeValue(list, current->tree);
+			addValueToSortedList(list, tempTree, tempCount);
+
 			return;
 		}
 
@@ -76,33 +147,14 @@ void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int c
 	old->next = temp;
 }
 
-BinaryTreeNode *pop(SortedList &list)
-{
-	BinaryTreeNode *temp = list.head->tree.root;
-	
-	list.head = list.head->next;
-
-	return temp;
-}
-
 void sortedListNS::makeTree(SortedList &list)
 {
 	while (list.head->next != nullptr)
 	{
 		int count = list.head->count + list.head->next->count;
 
-		BinaryTree tempTree = createTree();
+		BinaryTree tempTree = createTempTree(pop(list), pop(list), '0');
 
-		tempTree.root = new BinaryTreeNode;
-
-		tempTree.root->leftChild = pop(list);
-		tempTree.root->rightChild = pop(list);
-
-		int const stringLength = 256;
-
-		tempTree.root->symbol = '0';
-
-		
 		addValueToSortedList(list, tempTree, count);
 	}
 

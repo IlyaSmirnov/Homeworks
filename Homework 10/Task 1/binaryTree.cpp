@@ -3,14 +3,6 @@
 using namespace binaryTreeNS;
 using namespace std;
 
-BinaryTree binaryTreeNS::createTree()
-{
-	BinaryTree tree;
-	tree.root = nullptr;
-
-	return tree;
-}
-
 void deleteTreeNode(BinaryTree &tree, BinaryTreeNode *&child)
 {
 	if (child != nullptr)
@@ -28,6 +20,32 @@ void deleteTreeNode(BinaryTree &tree, BinaryTreeNode *&child)
 	return;
 }
 
+void print(BinaryTreeNode *child, fstream &output)
+{
+	if (child == nullptr)
+		output << "null";
+	else
+	{
+		output << "(" << "" << child->symbol << " ";
+		print(child->leftChild, output);
+
+		output << " ";
+
+		print(child->rightChild, output);
+		output << ")";
+	}
+
+	return;
+}
+
+BinaryTree binaryTreeNS::createTree()
+{
+	BinaryTree tree;
+	tree.root = nullptr;
+
+	return tree;
+}
+
 void binaryTreeNS::deleteTree(BinaryTree &tree)
 {
 	deleteTreeNode(tree, tree.root);
@@ -35,27 +53,21 @@ void binaryTreeNS::deleteTree(BinaryTree &tree)
 	return;
 }
 
-void SomeOrder(BinaryTreeNode* child, fstream& out)
+BinaryTree binaryTreeNS::createTempTree(BinaryTreeNode *leftChild, BinaryTreeNode *rightChild, char symbol)
 {
-	if (child == nullptr)
-		out << "null";
-	else
-	{
-		out << "("  << "" << child->symbol << " ";
-		SomeOrder(child->leftChild, out);
+	BinaryTree tree = createTree();
+	tree.root = new BinaryTreeNode;
 
-		out << " ";
+	tree.root->leftChild = leftChild;
+	tree.root->rightChild = rightChild;
+	tree.root->symbol = symbol;
 
-		SomeOrder(child->rightChild, out);
-		out << ")";
-	}
-
-	return;
+	return tree;
 }
 
-void binaryTreeNS::printTreeSomeOrder(BinaryTree tree, fstream& output)
+void binaryTreeNS::printTree(BinaryTree tree, fstream& output)
 {
-	SomeOrder(tree.root, output);
+	print(tree.root, output);
 
 	return;
 }

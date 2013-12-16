@@ -20,5 +20,7 @@ namespace binaryTreeNS
 	BinaryTree createTree();
 	void deleteTree(BinaryTree &tree);
 	
-	void printTreeSomeOrder(BinaryTree tree, fstream& output);
+	BinaryTree createTempTree(BinaryTreeNode *leftChild, BinaryTreeNode *rightChild, char symbol);
+
+	void printTree(BinaryTree tree, fstream &output);
 }
