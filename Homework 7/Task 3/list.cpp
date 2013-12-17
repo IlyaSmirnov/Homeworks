@@ -17,6 +17,7 @@ void list::deleteList(List &list)
 	while (list.head != nullptr)
 	{
 		ListElement *temp = list.head->next;
+		deleteString(list.head->string);
 		delete list.head;
 		list.head = temp;
 	}

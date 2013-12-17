@@ -61,6 +61,8 @@ int main()
 		printf("%s%d\n", "Amount of empty cells is ", empty(hashTable));
 
 		deleteHashTable(hashTable);
+		delete [] string;
+		delete [] word;
 	}
 
 	input.close();

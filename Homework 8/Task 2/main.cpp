@@ -93,7 +93,7 @@ int main()
 
 		GraphVertex graph[10];
 
-		for (int i = 0; i <= n; ++i)
+		for (int i = 1; i <= n; ++i)
 			graph[i] = createGraph();
 		
 		while (!input.eof())

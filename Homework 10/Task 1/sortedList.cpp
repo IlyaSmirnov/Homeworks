@@ -82,6 +82,7 @@ void sortedListNS::deleteSortedList(SortedList &list)
 	while (list.head != nullptr)
 	{
 		ListElement *temp = list.head->next;
+		deleteTree(list.head->tree);
 		delete list.head;
 		list.head = temp;
 	}

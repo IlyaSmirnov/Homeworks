@@ -60,7 +60,7 @@ int main()
 	{
 		SortedList list = createSortedList();
 
-		fstream output("output.txt");
+		fstream output("output.txt", ios::out);
 
 		while (!input.eof())
 		{
@@ -71,6 +71,8 @@ int main()
 
 			if (symbol != '0')
 				addValueToSortedList(list, tempTree, 1);
+
+			deleteTree(tempTree);
 		}
 		
 		makeTree(list);
@@ -100,10 +102,9 @@ int main()
 			input >> symbol;
 
 			if (symbol != '0')
-				output << table[(int) symbol] << endl;
+				output << table[(int) symbol];
 		}
 
-		deleteTree(list.head->tree);
 		deleteSortedList(list);
 		output.close();
 		for (int i = 0; i < tableSize; ++i)

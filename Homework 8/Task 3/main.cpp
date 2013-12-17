@@ -36,6 +36,10 @@ int main()
 		}
 
 		printGraph(graph);
+
+		for (int i = 1; i <= n; ++i)
+			deleteGraph(graph[i]);
+		delete [] graph;
 	}
 
 	input.close();

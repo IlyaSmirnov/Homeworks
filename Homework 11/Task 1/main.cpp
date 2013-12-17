@@ -1,4 +1,5 @@
 #include "polynomial.h"
+#include "math.h"
 
 using namespace std;
 using namespace polynomialNS;
