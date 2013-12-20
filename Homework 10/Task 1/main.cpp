@@ -32,14 +32,30 @@ void makeTable(BinaryTreeNode *child, char **table, char *code)
 	return;
 }
 
-void initTable(char ** table, int tableSize)
+char **createTable(int tableSize)
 {
+	char **table = new char *[tableSize];
+
 	for (int i = 0; i < tableSize; ++i)
 		table[i] = new char[tableSize];
 
 	for (int i = 0; i < tableSize; ++i)
 	for (int j = 0; j < tableSize; ++j)
 		table[i][j] = '\0';
+
+	return table;
+}
+
+void deleteTable(char **&table, int tableSize)
+{
+	for (int i = 0; i < tableSize; ++i)
+	{
+		delete table[i];
+		table[i] = nullptr;
+	}
+
+	delete[] table;
+	table = nullptr;
 
 	return;
 }
@@ -82,8 +98,8 @@ int main()
 		const int tableSize = 10000;
 		const int stringLength = 256;
 
-		char **table = new char *[tableSize];
-		initTable(table, tableSize);
+		
+		char **table = createTable(tableSize);
 
 		char *string = new char[stringLength];
 		initString(string, stringLength);
@@ -106,12 +122,13 @@ int main()
 		}
 
 		deleteSortedList(list);
-		output.close();
-		for (int i = 0; i < tableSize; ++i)
-			delete[] table[i];
-		delete[] table;
+		deleteTable(table, tableSize);
+
 		delete[]string;
+		string = nullptr;
+
 		input.close();
+		output.close();
 	}
 	
 	input.close();

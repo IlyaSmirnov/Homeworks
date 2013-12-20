@@ -14,45 +14,47 @@ void dijkstra(GraphVertex *graph, int n)
 	int shortestDistation[1000];
 	int previous[1000];
 
-	for (int i = 1; i <= n; ++i)
+	for (int i = 0; i < n; ++i)
 	{
 		visited[i] = false;
 		previous[i] = 0;
 		shortestDistation[i] = 1000000;
 	}
 
-	visited[1] = true;
-	shortestDistation[1] = 0;
+	visited[0] = true;
+	shortestDistation[0] = 0;
 	
 	while (true)
 	{
-		int minVertex = 0;
+		int minVertex = -1;
 
-		for (int i = 1; i <= n; ++i)
-		if ((visited[i]) && ((minVertex == 0) || shortestDistation[i] < shortestDistation[minVertex]))
-			minVertex = i;
+		for (int i = 0; i < n; ++i)
+			if ((visited[i]) && ((minVertex == -1) || shortestDistation[i] < shortestDistation[minVertex]))
+				minVertex = i;
 		
-		if (minVertex == 0)
+		if (minVertex == -1)
 			break;
 
-		if (minVertex != 1)
+		if (minVertex != 0)
 		{
-			cout << "Number of town: " << minVertex << " Distation from town 1: " << shortestDistation[minVertex];
+			cout << "Number of town: " << minVertex + 1 << " Distation from town 1: " << shortestDistation[minVertex];
 
-			int counter = 1;
+			int counter = 0;
 			int j = minVertex;
 
-			while (j != 1)
+			while (j != 0)
 			{
-				shortestPath[counter] = j;
 				counter++;
+				shortestPath[counter] = j;
 				j = previous[j];
 			}
 
-			shortestPath[counter] = 1;
-			printf("%s", " PATH: ");
-			for (int i = counter; i >= 1; --i)
-				cout << shortestPath[i] << ' ';
+			++counter;
+			shortestPath[counter] = 0;
+
+			cout << " PATH: ";
+			for (int i = counter; i > 0; --i)
+				cout << shortestPath[i] + 1 << ' ';
 
 			cout << endl;
 		}
@@ -79,21 +81,21 @@ void dijkstra(GraphVertex *graph, int n)
 
 int main()
 {
-	cout << "Welcome to the program which will tell you when Nazis will come to your town" << endl;
-	
 	fstream input("input.txt");
 
 	if (!input.is_open())
 		cout << "File input.txt doesn't exist" << endl;
 	else
 	{
+		cout << "Welcome to the program which will tell you when Nazis will come to your town" << endl;
+
 		int n = 0;
 		int m = 0;
 		input >> n >> m;
 
 		GraphVertex graph[10];
 
-		for (int i = 1; i <= n; ++i)
+		for (int i = 0; i < n; ++i)
 			graph[i] = createGraph();
 		
 		while (!input.eof())
@@ -104,13 +106,13 @@ int main()
 
 			input >> roadEnd1 >> roadEnd2 >> len;
 
-			addPath(graph[roadEnd1], roadEnd2, len);
-			addPath(graph[roadEnd2], roadEnd1, len);
+			addPath(graph[roadEnd1 - 1], roadEnd2 - 1, len);
+			addPath(graph[roadEnd2 - 1], roadEnd1 - 1, len);
 		}
 
 		dijkstra(graph, n);
 
-		for (int i = 1; i <= n; ++i)
+		for (int i = 0; i < n; ++i)
 			deleteGraphVertex(graph[i]);
 	}
 

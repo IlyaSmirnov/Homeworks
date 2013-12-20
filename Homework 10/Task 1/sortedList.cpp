@@ -13,6 +13,8 @@ void deleteElement(SortedList &list, ListElement* listElement)
 		list.head = list.head->next;
 
 		delete temp;
+		temp = nullptr;
+
 		return;
 	}
 
@@ -27,6 +29,8 @@ void deleteElement(SortedList &list, ListElement* listElement)
 			counter->next = counter->next->next;
 
 			delete temp;
+			temp = nullptr;
+
 			return;
 		}
 	}
@@ -37,6 +41,8 @@ void deleteElement(SortedList &list, ListElement* listElement)
 			list.head = listElement->next;
 
 			delete temp;
+			temp = nullptr;
+
 			return;
 		}
 }
@@ -84,6 +90,7 @@ void sortedListNS::deleteSortedList(SortedList &list)
 		ListElement *temp = list.head->next;
 		deleteTree(list.head->tree);
 		delete list.head;
+		list.head = nullptr;
 		list.head = temp;
 	}
 }

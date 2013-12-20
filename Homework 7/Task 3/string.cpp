@@ -103,15 +103,7 @@ String stringNS::returnSubString(String &string, int firstElement, int length)
 
 char *stringNS::stringToChar(String &string)
 {
-	char *charString = new char[string.maxLength];
-
-	for (int i = 0; i < string.maxLength; ++i)
-		charString[i] = '\0';
-	
-	for (int i = 0; i < string.length; ++i)
-		charString[i] = string.string[i];
-
-	return charString;
+	return string.string;
 }
 
 String stringNS::charToStirng(char *string)

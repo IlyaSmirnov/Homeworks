@@ -97,7 +97,7 @@ void list::showList(List &list)
 
 		while (temp != nullptr)
 		{
-			cout << stringToChar(temp->string) << ' ' << temp->number << endl;
+			cout << temp->string.string << ' ' << temp->number << endl;
 			temp = temp->next;
 		}
 	}
