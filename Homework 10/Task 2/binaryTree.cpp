@@ -18,7 +18,7 @@ BinaryTree binaryTreeNS::createTree(BinaryTreeNode *leftChild, BinaryTreeNode *r
 	return tree;
 }
 
-BinaryTreeNode *binaryTreeNS::createTreeNode(char symbol)
+BinaryTreeNode *createTreeNode(char symbol)
 {
 	BinaryTreeNode *node = new BinaryTreeNode;
 
@@ -28,15 +28,15 @@ BinaryTreeNode *binaryTreeNS::createTreeNode(char symbol)
 	return node;
 }
 
-void deleteTreeNode(BinaryTree &tree, BinaryTreeNode *&child)
+void deleteTreeNodeAndChilds(BinaryTree &tree, BinaryTreeNode *&child)
 {
 	if (child != nullptr)
 	{
 		if (child->leftChild != nullptr)
-			deleteTreeNode(tree, child->leftChild);
+			deleteTreeNodeAndChilds(tree, child->leftChild);
 
 		if (child->rightChild != nullptr)
-			deleteTreeNode(tree, child->rightChild);
+			deleteTreeNodeAndChilds(tree, child->rightChild);
 
 		delete child;
 		child = nullptr;
@@ -47,25 +47,7 @@ void deleteTreeNode(BinaryTree &tree, BinaryTreeNode *&child)
 
 void binaryTreeNS::deleteTree(BinaryTree &tree)
 {
-	return deleteTreeNode(tree, tree.root);
-}
-
-void print(BinaryTreeNode *child)
-{
-	if (child == nullptr)
-		cout << "null";
-	else
-	{
-		cout << "(" << "" << child->symbol << " ";
-		print(child->leftChild);
-
-		cout << " ";
-
-		print(child->rightChild);
-		cout << ")";
-	}
-
-	return;
+	return deleteTreeNodeAndChilds(tree, tree.root);
 }
 
 void read(char *string, int &index, BinaryTreeNode *current)

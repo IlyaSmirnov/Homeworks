@@ -18,7 +18,6 @@ namespace binaryTreeNS
 	};
 
 	BinaryTree createTree(BinaryTreeNode *leftChild, BinaryTreeNode *rightChild, char symbol);
-	BinaryTreeNode* createTreeNode(char symbol);
 	void deleteTree(BinaryTree &tree);
 
 	BinaryTree readTree(char *string);
