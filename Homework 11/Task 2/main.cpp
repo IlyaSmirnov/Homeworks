@@ -67,11 +67,8 @@ bool isFloat(char* string)
 			++i;
 
 			if (isNumber(string[i]))
-			{
-				state = integer;
 				break;
-			}
-
+	
 			if (isDot(string[i]))
 			{
 				state = dot;
@@ -144,9 +141,9 @@ bool isFloat(char* string)
 				break;
 			}
 
-			if (isE(string[i]))
+			if (isNumber(string[i]))
 			{
-				state = e;
+				state = numberAferE;
 				break;
 			}
 
@@ -161,12 +158,6 @@ bool isFloat(char* string)
 			if (isNumber(string[i]))
 			{
 				state = numberAferE;
-				break;
-			}
-
-			if (isEnd(string[i]))
-			{
-				state = finish;
 				break;
 			}
 
