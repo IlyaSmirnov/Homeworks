@@ -5,10 +5,10 @@ using namespace std;
 
 GraphVertex graph::createGraph()
 {
-	GraphVertex *graph = new GraphVertex;
-	graph->head = nullptr;
+	GraphVertex graph;
+	graph.head = nullptr;
 
-	return *graph;
+	return graph;
 }
 
 void graph::deleteGraphVertex(GraphVertex &graph)

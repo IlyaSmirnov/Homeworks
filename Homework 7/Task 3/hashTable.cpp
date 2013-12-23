@@ -20,7 +20,7 @@ void hashTable::deleteHashTable(HashTable &hashTable)
 	for (int i = 0; i < hashTable.size; ++i)
 		deleteList(hashTable.tableElement[i]);
 	
-	delete[] hashTable.tableElement;
+	delete [] hashTable.tableElement;
 
 	return;
 }
