@@ -21,6 +21,8 @@ void list::deleteList(List &list)
 		delete list.head;
 		list.head = temp;
 	}
+
+	delete list.head;
 }
 
 void list::addElementToList(List &list, String string)

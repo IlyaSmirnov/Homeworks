@@ -9,7 +9,7 @@ HashTable hashTable::createHashTable(int size)
 	hashTable.size = size;
 	hashTable.tableElement = new List[size];
 
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < hashTable.size; ++i)
 		hashTable.tableElement[i] = createList();
 	
 	return hashTable;

@@ -93,6 +93,8 @@ void sortedListNS::deleteSortedList(SortedList &list)
 		list.head = nullptr;
 		list.head = temp;
 	}
+
+	delete list.head;
 }
 
 void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int count)
