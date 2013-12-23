@@ -133,7 +133,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 				  }
 
 
-				  if (isNumber(string[i]))
+				  if (isNumber(string[currentPosition]))
 				  {
 					  state = numberAferE;
 					  break;
