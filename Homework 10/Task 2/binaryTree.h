@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <string.h>
 
 using namespace std;
 

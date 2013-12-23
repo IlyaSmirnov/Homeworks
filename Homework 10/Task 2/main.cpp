@@ -1,12 +1,11 @@
 #include "binaryTree.h"
-#include <string.h>
 
 using namespace binaryTreeNS;
 using namespace std;
 
 void decode(fstream &input, BinaryTree tree)
 {
-	fstream output("output.txt");
+	fstream output("output.txt", ios::out);
 
 	BinaryTreeNode *currentChild = tree.root;
 	char symbol = '0';
