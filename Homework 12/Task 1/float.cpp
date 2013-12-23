@@ -132,9 +132,10 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 					  break;
 				  }
 
-				  if (isE(string[currentPosition]))
+
+				  if (isNumber(string[i]))
 				  {
-					  state = e;
+					  state = numberAferE;
 					  break;
 				  }
 
@@ -149,12 +150,6 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 						   if (isNumber(string[currentPosition]))
 						   {
 							   state = numberAferE;
-							   break;
-						   }
-
-						   if (isEnd(string, currentPosition))
-						   {
-							   state = finish;
 							   break;
 						   }
 
