@@ -35,6 +35,7 @@ void list::addElementToList(List &list, String string)
 	if (list.head == nullptr)
 	{
 		list.head = temp;
+		delete[] string.string;
 		list.size++;
 
 		return;
