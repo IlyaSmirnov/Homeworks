@@ -23,8 +23,7 @@ namespace list
 	void deleteList(List &list);
 
 	void addElementToList(List &list, String string);
-	void deleteElementInList(List &list, ListElement *&listElement);
-
+	
 	void showList(List &list);
 	bool isEmptyList(List list);
 }

@@ -65,35 +65,6 @@ void list::addElementToList(List &list, String string)
 	}
 }
 
-void list::deleteElementInList(List &list, ListElement *&listElement)
-{
-	ListElement *counter = list.head;
-	ListElement *temp;
-
-	if ((list.head != nullptr) && (list.head != listElement))
-	{
-		while ((counter != nullptr) && (counter->next != listElement))
-			counter = counter->next;
-		if (counter)
-		{
-			temp = counter->next;
-			counter->next = counter->next->next;
-			delete temp;
-			return;
-		}
-	}
-	else
-	{
-		if (list.head != listElement)
-		{
-			temp = listElement;
-			list.head = listElement->next;
-			delete temp;
-			return;
-		}
-	}
-}
-
 void list::showList(List &list)
 {
 	if (list.head != nullptr)
