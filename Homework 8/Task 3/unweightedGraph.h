@@ -12,12 +12,11 @@ namespace graph
 	struct Graph
 	{
 		Path *head;
-		int size;
 	};
 
 	Graph createGraph();
 	void deleteGraph(Graph &graph);
 
 	void addPath(Graph &graph, int vertex);
-	void printGraph(Graph *&graph);
+	void printGraph(Graph *graph, int size);
 }

@@ -1,8 +1,6 @@
 #include "unweightedGraph.h"
-#include "list.h"
 
 using namespace graph;
-using namespace list;
 using namespace std;
 
 Graph graph::createGraph()
@@ -48,7 +46,7 @@ void DFS(Graph *&graph, int i, bool *&visited)
 {
 	Path *temp = graph[i].head;
 
-	cout << i << ' ';
+	cout << i + 1 << ' ';
 
 	visited[i] = true;
 
@@ -63,26 +61,26 @@ void DFS(Graph *&graph, int i, bool *&visited)
 	return;
 }
 
-bool check(Graph graph[], bool *&visited)
+bool check(Graph graph[], bool *&visited, int size)
 {
-	for (int i = 1; i <= graph->size; ++i)
-	if (!visited[i])
-		return false;
+	for (int i = 0; i < size; ++i)
+		if (!visited[i])
+			return false;
 	
 	return true;
 }
 
-void graph::printGraph(Graph *&graph)
+void graph::printGraph(Graph *graph, int size)
 {
 	int number = 0;
 
 	bool *visited = new bool[10000];
 
-	for (int i = 1; i <= graph->size; ++i)
-	visited[i] = false;
+	for (int i = 0; i < size; ++i)
+		visited[i] = false;
 
-	while (!check(graph, visited))
-		for (int i = 1; i <= graph->size; ++i)
+	while (!check(graph, visited, size))
+		for (int i = 0; i < size; ++i)
 			if (!visited[i])
 			{
 				++number;
@@ -91,6 +89,8 @@ void graph::printGraph(Graph *&graph)
 				cout << endl;
 				break;
 			}
+
+	delete [] visited;
 
 	return;
 }
