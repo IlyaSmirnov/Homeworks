@@ -97,8 +97,33 @@ void sortedListNS::deleteSortedList(SortedList &list)
 	delete list.head;
 }
 
+bool findSymbolInList(SortedList &list, char symbol)
+{
+	ListElement *current = list.head;
+
+	while ((current != nullptr) && (symbol != '0'))
+	{
+		if (symbol == current->tree.root->symbol)
+		{
+			BinaryTree tempTree = createTempTree(nullptr, nullptr, current->tree.root->symbol);
+			int tempCount = ++current->count;
+			removeValue(list, current->tree);
+			addValueToSortedList(list, tempTree, tempCount);
+
+			return true;
+		}
+
+		current = current->next;
+	}
+
+	return false;
+}
+
 void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int count)
 {
+	if (findSymbolInList(list, tree.root->symbol))
+		return;
+
 	ListElement *temp = new ListElement;
 	temp->count = count;
 	temp->tree = tree;
@@ -111,21 +136,6 @@ void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int c
 	}
 
 	ListElement *current = list.head;
-	
-	while ((current != nullptr) && (tree.root->symbol != '0'))
-	{
-		if (tree.root->symbol == current->tree.root->symbol)
-		{
-			BinaryTree tempTree = createTempTree(nullptr, nullptr, current->tree.root->symbol);
-			int tempCount = ++current->count;
-			removeValue(list, current->tree);
-			addValueToSortedList(list, tempTree, tempCount);
-
-			return;
-		}
-
-		current = current->next;
-	}
 
 	current = list.head;
 	ListElement *old = nullptr;
