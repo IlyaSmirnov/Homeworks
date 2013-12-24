@@ -6,13 +6,11 @@
 using namespace std;
 using namespace hashTable;
 
-char *initString(int stringLength);
-
 int main()
 {
 	fstream input("input.txt");
 
-	if (input.is_open())
+	if (!input.is_open())
 	{
 		printf("%s\n", "Your file is not exist");
 
@@ -24,8 +22,8 @@ int main()
 
 	const int stringLength = 255;
 
-	char *string = initString(stringLength);
-	char *word = initString(stringLength);
+	char *string = new char[stringLength];
+	char *word = new char[stringLength];
 
 	while (!input.eof())
 	{
@@ -44,7 +42,7 @@ int main()
 				++wordLength;
 			}
 			
-			addToHashTable(hashTable, charToStirng(word));
+			addToHashTable(hashTable, charToStirng(word, wordLength));
 
 			++i;
 		}
@@ -67,14 +65,4 @@ int main()
 
 	system("PAUSE");
 	return 0;
-}
-
-char *initString(int stringLength)
-{
-	char *string = new char[stringLength];
-
-	for (int i = 0; i < stringLength; ++i)
-		string[i] = '\0';
-
-	return string;
 }

@@ -106,13 +106,16 @@ char *stringNS::stringToChar(String &string)
 	return string.string;
 }
 
-String stringNS::charToStirng(char *string)
+String stringNS::charToStirng(char *string, int stringLength)
 {
 	String myString = createString(strlen(string));
 	myString.length = strlen(string);
 	myString.maxLength = 1000000;
 
-	for (unsigned int i = 0; i < strlen(string); ++i)
+	for (unsigned int i = 0; i < stringLength ; ++i)
+		if (string[i] == '\0')
+			break;
+		else
 		myString.string[i] = string[i];
 
 	return myString;

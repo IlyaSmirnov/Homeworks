@@ -20,5 +20,5 @@ namespace stringNS
 	bool isEmptyString(String &string);
 	String returnSubString(String &string, int firstElement, int length);
 	char *stringToChar(String &string);
-	String charToStirng(char *string);
+	String charToStirng(char *string, int stringLength);
 }
