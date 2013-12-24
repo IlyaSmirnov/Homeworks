@@ -4,7 +4,7 @@ using namespace floatNS;
 
 bool isSign(char symbol)
 {
-	return ((symbol == '+') || (symbol <= '-'));
+	return ((symbol == '+') || (symbol == '-'));
 }
 
 bool isNumber(char symbol)
@@ -101,11 +101,8 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 						 ++currentPosition;
 
 						 if (isNumber(string[currentPosition]))
-						 {
-							 state = afterDot;
-							 break;
-						 }
-
+						 	 break;
+						 
 						 if (isEnd(string, currentPosition))
 						 {
 							 state = finish;

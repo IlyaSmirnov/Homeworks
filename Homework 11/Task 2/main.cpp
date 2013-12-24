@@ -15,7 +15,7 @@ char * createString(int stringLength)
 
 bool isSign(char symbol)
 {
-	return ((symbol == '+') || (symbol <= '-'));
+	return ((symbol == '+') || (symbol == '-'));
 }
 
 bool isNumber(char symbol)
@@ -110,11 +110,8 @@ bool isFloat(char* string)
 			++i;
 
 			if (isNumber(string[i]))
-			{
-				state = afterDot;
 				break;
-			}
-
+			
 			if (isEnd(string[i]))
 			{
 				state = finish;
@@ -170,11 +167,8 @@ bool isFloat(char* string)
 			++i;
 
 			if (isNumber(string[i]))
-			{
-				state = numberAferE;
 				break;
-			}
-
+			
 			if (isEnd(string[i]))
 			{
 				state = finish;
