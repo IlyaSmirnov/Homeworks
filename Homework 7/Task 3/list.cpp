@@ -35,7 +35,6 @@ void list::addElementToList(List &list, String string)
 	if (list.head == nullptr)
 	{
 		list.head = temp;
-		delete[] string.string;
 		list.size++;
 
 		return;
@@ -47,6 +46,9 @@ void list::addElementToList(List &list, String string)
 		{
 			if (isEqualStrings(i->string, string))
 			{
+				deleteString(string);
+				delete temp;
+
 				++i->number;
 
 				return;
