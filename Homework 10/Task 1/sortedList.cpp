@@ -70,12 +70,7 @@ BinaryTreeNode *pop(SortedList &list)
 {
 	BinaryTreeNode *temp = list.head->tree.root;
 
-	ListElement *tempDelete = list.head->next;
-
-	delete list.head;
-	list.head == nullptr;
-
-	list.head = tempDelete;
+	deleteElement(list, list.head);
 
 	return temp;
 }
@@ -93,9 +88,12 @@ void sortedListNS::deleteSortedList(SortedList &list)
 	while (list.head != nullptr)
 	{
 		ListElement *temp = list.head->next;
+
 		deleteTree(list.head->tree);
+
 		delete list.head;
 		list.head = nullptr;
+
 		list.head = temp;
 	}
 
@@ -110,7 +108,7 @@ bool findSymbolInList(SortedList &list, char symbol)
 	{
 		if (symbol == current->tree.root->symbol)
 		{
-			BinaryTree tempTree = createTempTree(nullptr, nullptr, symbol);
+			BinaryTree tempTree = createTree(nullptr, nullptr, symbol);
 			int tempCount = ++current->count;
 			removeValue(list, current->tree);
 			addValueToSortedList(list, tempTree, tempCount);
@@ -181,7 +179,7 @@ void sortedListNS::makeTree(SortedList &list)
 	{
 		int count = list.head->count + list.head->next->count;
 
-		BinaryTree tempTree = createTempTree(pop(list), pop(list), '0');
+		BinaryTree tempTree = createTree(pop(list), pop(list), '0');
 
 		addValueToSortedList(list, tempTree, count);
 	}

@@ -3,6 +3,14 @@
 using namespace binaryTreeNS;
 using namespace std;
 
+BinaryTree createEmptyTree()
+{
+	BinaryTree tree;
+	tree.root = nullptr;
+
+	return tree;
+}
+
 void deleteTreeNode(BinaryTree &tree, BinaryTreeNode *&child)
 {
 	if (child != nullptr)
@@ -38,10 +46,14 @@ void print(BinaryTreeNode *child, fstream &output)
 	return;
 }
 
-BinaryTree binaryTreeNS::createTree()
+BinaryTree binaryTreeNS::createTree(BinaryTreeNode *leftChild, BinaryTreeNode *rightChild, char symbol)
 {
-	BinaryTree tree;
-	tree.root = nullptr;
+	BinaryTree tree = createEmptyTree();
+	tree.root = new BinaryTreeNode;
+
+	tree.root->leftChild = leftChild;
+	tree.root->rightChild = rightChild;
+	tree.root->symbol = symbol;
 
 	return tree;
 }
@@ -51,18 +63,6 @@ void binaryTreeNS::deleteTree(BinaryTree &tree)
 	deleteTreeNode(tree, tree.root);
 
 	return;
-}
-
-BinaryTree binaryTreeNS::createTempTree(BinaryTreeNode *leftChild, BinaryTreeNode *rightChild, char symbol)
-{
-	BinaryTree tree = createTree();
-	tree.root = new BinaryTreeNode;
-
-	tree.root->leftChild = leftChild;
-	tree.root->rightChild = rightChild;
-	tree.root->symbol = symbol;
-
-	return tree;
 }
 
 void binaryTreeNS::printTree(BinaryTree tree, fstream& output)
