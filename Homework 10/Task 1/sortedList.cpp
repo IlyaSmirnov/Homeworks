@@ -2,7 +2,7 @@
 
 using namespace sortedListNS;
 
-void deleteElement(SortedList &list, ListElement* listElement)
+void deleteElement(SortedList &list, ListElement *listElement)
 {
 	ListElement *counter = list.head;
 	ListElement *temp;
@@ -100,18 +100,17 @@ void sortedListNS::deleteSortedList(SortedList &list)
 	delete list.head;
 }
 
-bool findSymbolInList(SortedList &list, char symbol)
+bool findSymbolInList(SortedList &list, BinaryTree tree)
 {
 	ListElement *current = list.head;
 
-	while ((current != nullptr) && (symbol != '0'))
+	while ((current != nullptr) && (tree.root->symbol != '0'))
 	{
-		if (symbol == current->tree.root->symbol)
+		if (tree.root->symbol == current->tree.root->symbol)
 		{
-			BinaryTree tempTree = createTree(nullptr, nullptr, symbol);
 			int tempCount = ++current->count;
 			removeValue(list, current->tree);
-			addValueToSortedList(list, tempTree, tempCount);
+			addValueToSortedList(list, tree, tempCount);
 
 			return true;
 		}
@@ -124,9 +123,8 @@ bool findSymbolInList(SortedList &list, char symbol)
 
 void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int count)
 {
-	if (findSymbolInList(list, tree.root->symbol))
+	if (findSymbolInList(list, tree))
 	{
-		deleteTree(tree);
 		return;
 	}
 
