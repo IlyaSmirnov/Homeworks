@@ -73,7 +73,6 @@ bool firstOrderOperation(char *string, int &currentPosition)
 	return ((floatNumber(string, currentPosition)) && (firstOrderOperation(string, currentPosition)));
 }
 
-
 bool floatNumber(char *string, int &currentPosition)
 {
 	if (string[currentPosition] == '(')
