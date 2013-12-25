@@ -35,16 +35,16 @@ void deleteElement(SortedList &list, ListElement* listElement)
 		}
 	}
 	else
-		if (list.head != listElement)
-		{
-			temp = listElement;
-			list.head = listElement->next;
+	if (list.head != listElement)
+	{
+		temp = listElement;
+		list.head = listElement->next;
 
-			delete temp;
-			temp = nullptr;
+		delete temp;
+		temp = nullptr;
 
-			return;
-		}
+		return;
+	}
 }
 
 void removeValue(SortedList &list, BinaryTree tree)
@@ -122,7 +122,10 @@ bool findSymbolInList(SortedList &list, char symbol)
 void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int count)
 {
 	if (findSymbolInList(list, tree.root->symbol))
+	{
+		deleteTree(tree);
 		return;
+	}
 
 	ListElement *temp = new ListElement;
 	temp->count = count;

@@ -24,8 +24,8 @@ char **createTable(int tableSize, SortedList list)
 char *createString(int stringLength)
 {
 	char *string = new char[stringLength];
-	for (int i = 0; i < stringLength; ++i)
-		string[i] = '\0';
+		for (int i = 0; i < stringLength; ++i)
+			string[i] = '\0';
 
 	return string;
 }
@@ -33,8 +33,8 @@ char *createString(int stringLength)
 void makeTable(BinaryTreeNode *child, char **table, char *code)
 {
 	if ((child->leftChild == nullptr) && (child->rightChild == nullptr))
-		for (unsigned int i = 0; i < strlen(code); ++i)
-			table[(int) child->symbol][i] = code[i];
+	for (unsigned int i = 0; i < strlen(code); ++i)
+		table[(int) child->symbol][i] = code[i];
 	else
 	{
 		if (child->leftChild != nullptr)
@@ -64,7 +64,7 @@ char **createHuffmanTable(SortedList list, int tableSize)
 
 	makeTable(list.head->tree.root, table, code);
 
-	delete[]code;
+	delete [] code;
 	code = nullptr;
 
 	return table;
@@ -90,7 +90,7 @@ int main()
 
 	if (!input1.is_open())
 		return 0;
-	
+
 	SortedList list = createSortedList();
 
 	while (!input1.eof())
@@ -105,13 +105,13 @@ int main()
 	}
 
 	makeTree(list);
-	
+
 	fstream output("output.txt", ios::out);
 	printTree(list.head->tree, output);
 
 	const int tableSize = 10000;
 	char **table = createHuffmanTable(list, tableSize);
-		
+
 	input1.close();
 	input1.clear();
 	fstream input2("input.txt");
@@ -132,6 +132,6 @@ int main()
 
 	input2.close();
 	output.close();
-	
+
 	return 0;
 }

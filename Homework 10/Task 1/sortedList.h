@@ -16,11 +16,11 @@ namespace sortedListNS
 	{
 		ListElement *head;
 	};
-	
+
 	SortedList createSortedList();
 	void deleteSortedList(SortedList &list);
 
 	void addValueToSortedList(SortedList &list, BinaryTree tree, int count);
-	
+
 	void makeTree(SortedList &list);
 }

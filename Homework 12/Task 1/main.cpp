@@ -82,10 +82,10 @@ bool floatNumber(char *string, int &currentPosition)
 
 		bool check = preFirstOrderOperation(string, currentPosition);
 
+		floatNumber(string, currentPosition);
+		
 		if (string[currentPosition] != ')')
 			return false;
-
-		++currentPosition;
 
 		return check;
 	}

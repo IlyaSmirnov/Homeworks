@@ -49,7 +49,7 @@ BinaryTree binaryTreeNS::createTree()
 void binaryTreeNS::deleteTree(BinaryTree &tree)
 {
 	deleteTreeNode(tree, tree.root);
-	
+
 	return;
 }
 
