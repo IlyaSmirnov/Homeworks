@@ -70,7 +70,12 @@ BinaryTreeNode *pop(SortedList &list)
 {
 	BinaryTreeNode *temp = list.head->tree.root;
 
-	list.head = list.head->next;
+	ListElement *tempDelete = list.head->next;
+
+	delete list.head;
+	list.head == nullptr;
+
+	list.head = tempDelete;
 
 	return temp;
 }
@@ -105,7 +110,7 @@ bool findSymbolInList(SortedList &list, char symbol)
 	{
 		if (symbol == current->tree.root->symbol)
 		{
-			BinaryTree tempTree = createTempTree(nullptr, nullptr, current->tree.root->symbol);
+			BinaryTree tempTree = createTempTree(nullptr, nullptr, symbol);
 			int tempCount = ++current->count;
 			removeValue(list, current->tree);
 			addValueToSortedList(list, tempTree, tempCount);
