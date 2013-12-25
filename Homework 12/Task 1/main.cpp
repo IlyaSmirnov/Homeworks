@@ -87,6 +87,8 @@ bool floatNumber(char *string, int &currentPosition)
 		if (string[currentPosition] != ')')
 			return false;
 
+		++currentPosition;
+
 		return check;
 	}
 
