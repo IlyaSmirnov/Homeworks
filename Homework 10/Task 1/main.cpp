@@ -27,10 +27,8 @@ int main()
 		char symbol = '0';
 		input1 >> symbol;
 
-		BinaryTree tempTree = createTree(nullptr, nullptr, symbol);
-
 		if (symbol != '0')
-			addValueToSortedList(list, tempTree, 1);
+			addValueToSortedList(list, createTree(nullptr, nullptr, symbol), 1);
 	}
 
 	makeTree(list);
@@ -136,7 +134,7 @@ void deleteTable(char **&table, int tableSize)
 		table[i] = nullptr;
 	}
 
-	delete[] table;
+	delete [] table;
 	table = nullptr;
 
 	return;

@@ -4,7 +4,6 @@ using namespace sortedListNS;
 
 void deleteElement(SortedList &list, ListElement *listElement)
 {
-	ListElement *counter = list.head;
 	ListElement *temp;
 
 	if (listElement == list.head)
@@ -18,12 +17,14 @@ void deleteElement(SortedList &list, ListElement *listElement)
 		return;
 	}
 
-	if ((list.head != nullptr) && (list.head != listElement))
+	ListElement *counter = list.head;
+
+	if (list.head != nullptr)
 	{
 		while ((counter != nullptr) && (counter->next != listElement))
 			counter = counter->next;
 
-		if (counter)
+		if (counter != nullptr)
 		{
 			temp = counter->next;
 			counter->next = counter->next->next;
@@ -34,36 +35,6 @@ void deleteElement(SortedList &list, ListElement *listElement)
 			return;
 		}
 	}
-	else
-	if (list.head != listElement)
-	{
-		temp = listElement;
-		list.head = listElement->next;
-
-		delete temp;
-		temp = nullptr;
-
-		return;
-	}
-}
-
-void removeValue(SortedList &list, BinaryTree tree)
-{
-	ListElement *temp = list.head;
-
-	while (temp != nullptr)
-	{
-		if (temp->tree.root->symbol == tree.root->symbol)
-		{
-			deleteElement(list, temp);
-
-			return;
-		}
-
-		temp = temp->next;
-	}
-
-	return;
 }
 
 BinaryTreeNode *pop(SortedList &list)
@@ -104,12 +75,14 @@ bool findSymbolInList(SortedList &list, BinaryTree tree)
 {
 	ListElement *current = list.head;
 
-	while ((current != nullptr) && (tree.root->symbol != '0'))
+	while (current != nullptr)
 	{
 		if (tree.root->symbol == current->tree.root->symbol)
 		{
 			int tempCount = ++current->count;
-			removeValue(list, current->tree);
+			deleteTree(current->tree);
+			deleteElement(list, current);
+			
 			addValueToSortedList(list, tree, tempCount);
 
 			return true;
@@ -123,11 +96,9 @@ bool findSymbolInList(SortedList &list, BinaryTree tree)
 
 void sortedListNS::addValueToSortedList(SortedList &list, BinaryTree tree, int count)
 {
-	if (findSymbolInList(list, tree))
-	{
+	if ((tree.root->symbol != '0') && findSymbolInList(list, tree))
 		return;
-	}
-
+	
 	ListElement *temp = new ListElement;
 	temp->count = count;
 	temp->tree = tree;
