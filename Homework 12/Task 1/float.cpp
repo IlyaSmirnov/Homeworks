@@ -17,11 +17,6 @@ bool isDot(char symbol)
 	return (symbol == '.');
 }
 
-bool isEnd(char *string, int position)
-{
-	return ((string[position] == '\0') || ((string[position] == '+') && (string[position - 1] != 'E')) || ((string[position] == '-') && (string[position - 1] != 'E')) || (string[position] == '*') || (string[position] == '/') || (string[position] == '(') || (string[position] == ')'));
-}
-
 bool isE(char symbol)
 {
 	return symbol == 'E';
@@ -29,11 +24,11 @@ bool isE(char symbol)
 
 bool floatNS::isFloat(char *string, int &currentPosition)
 {
-	enum states { start, integer, dot, afterDot, e, signAfterE, numberAferE, finish, fail };
+	enum states { start, integer, dot, afterDot, e, signAfterE, numberAferE };
 	states state = start;
 
 	--currentPosition;
-
+	
 	while (true)
 	{
 		switch (state)
@@ -45,7 +40,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 					  if (isSign(string[currentPosition]) || (isNumber(string[currentPosition])))
 						  state = integer;
 					  else
-						  state = fail;
+						  return false;
 
 					  break;
 		}
@@ -55,10 +50,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 						++currentPosition;
 
 						if (isNumber(string[currentPosition]))
-						{
-							state = integer;
 							break;
-						}
 
 						if (isDot(string[currentPosition]))
 						{
@@ -72,14 +64,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 							break;
 						}
 
-						if (isEnd(string, currentPosition))
-						{
-							state = finish;
-							break;
-						}
-
-						state = fail;
-						break;
+						return true;
 		}
 
 		case dot:
@@ -92,8 +77,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 						break;
 					}
 
-					state = fail;
-					break;
+					return false;
 		}
 
 		case afterDot:
@@ -101,13 +85,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 						 ++currentPosition;
 
 						 if (isNumber(string[currentPosition]))
-						 	 break;
-						 
-						 if (isEnd(string, currentPosition))
-						 {
-							 state = finish;
 							 break;
-						 }
 
 						 if (isE(string[currentPosition]))
 						 {
@@ -115,8 +93,7 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 							 break;
 						 }
 
-						 state = fail;
-						 break;
+						 return true;
 		}
 
 		case e:
@@ -125,18 +102,30 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 
 				  if (isSign(string[currentPosition]))
 				  {
-					  state = finish;
+					  state = signAfterE;
 					  break;
 				  }
 
-				 if (isNumber(string[currentPosition]))
+				  if (isNumber(string[currentPosition]))
 				  {
 					  state = numberAferE;
 					  break;
 				  }
 
-				  state = fail;
-				  break;
+				  return false;
+		}
+
+		case signAfterE:
+		{
+						   ++currentPosition;
+
+						   if (isNumber(string[currentPosition]))
+						   {
+							   state = numberAferE;
+							   break;
+						   }
+
+						   return false;
 		}
 
 		case numberAferE:
@@ -145,28 +134,10 @@ bool floatNS::isFloat(char *string, int &currentPosition)
 
 							if (isNumber(string[currentPosition]))
 								break;
-							
-							if (isEnd(string, currentPosition))
-							{
-								state = finish;
-								break;
-							}
 
-							state = fail;
-							break;
-		}
-
-		case finish:
-		{
-					   return true;
-		}
-
-		case fail:
-		{
-					 return false;
+							return true;
 		}
 
 		}
 	}
 }
-

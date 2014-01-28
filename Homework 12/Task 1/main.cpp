@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
-#include <string.h>
+
 #include "float.h"
 
 using namespace std;
