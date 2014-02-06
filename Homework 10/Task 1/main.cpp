@@ -130,7 +130,7 @@ void deleteTable(char **&table, int tableSize)
 {
 	for (int i = 0; i < tableSize; ++i)
 	{
-		delete table[i];
+		delete [] table[i];
 		table[i] = nullptr;
 	}
 
