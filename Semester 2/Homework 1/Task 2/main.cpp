@@ -38,7 +38,7 @@ int main()
     cout << "The result from array stack is ";
     pStack->print();
 
-    delete infixExpression;
+    delete[] infixExpression;
     delete[] expression1;
     delete[] expression2;
     delete pStack;
