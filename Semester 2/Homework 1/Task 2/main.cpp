@@ -28,7 +28,7 @@ int main()
     ArrayStack *aStack = new ArrayStack();
 
     char *expression1 = converToPostfixt(pStack, infixExpression);
-    char *expression2 = converToPostfixt(pStack, infixExpression);
+    char *expression2 = converToPostfixt(aStack, infixExpression);
 
     calculate(pStack, expression1, i);
     calculate(aStack, expression2, i);
