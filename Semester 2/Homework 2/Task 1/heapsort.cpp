@@ -25,16 +25,16 @@ void downHeap(int a[], int k, int n)
 
 void HeapSort::sort(int array[], int size)
 {
-    for (int i = size / 2; i >= 1; --i)
-        downHeap(array, i, size);
+    for (int i = (size / 2) - 1; i >= 0; --i)
+        downHeap(array, i, size - 1);
 
-    for (int i = size; i > 1; --i)
+    for (int i = size - 1; i > 0; --i)
     {
         int temp = array[i];
-        array[i] = array[1];
-        array[1] = temp;
+        array[i] = array[0];
+        array[0] = temp;
 
-        downHeap(array, 1, i - 1);
+        downHeap(array, 0, i - 1);
     }
 
     return;
