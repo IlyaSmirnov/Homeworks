@@ -1,18 +1,21 @@
 #include "arraystack.h"
 #include "pointerstack.h"
 
+const int stringLength = 255;
+
 using namespace std;
 
 char* converToPostfixt(Stack *stack, char* expression);
 void calculate(Stack *stack, char* expression, int i);
+char *initStirng(int length);
 
 int main()
 {
     cout << "Welcome to the program of stack calculator\n";
     cout << "Enter expression you want to calculate ";
 
-    const int stringLength = 255;
-    char *infixExpression = new char[stringLength];
+
+    char *infixExpression = initStirng(stringLength);
     int i = 0;
 
     while (true)
@@ -24,32 +27,44 @@ int main()
         i++;
     }
 
-    PointerStack *pStack = new PointerStack();
-    ArrayStack *aStack = new ArrayStack();
+    Stack *stacks[2];
+    stacks[0] = new PointerStack();
+    stacks[1] = new ArrayStack();
 
-    char *expression1 = converToPostfixt(pStack, infixExpression);
-    char *expression2 = converToPostfixt(aStack, infixExpression);
+    char *expression1 = converToPostfixt(stacks[0], infixExpression);
+    char *expression2 = converToPostfixt(stacks[1], infixExpression);
 
-    calculate(pStack, expression1, i);
-    calculate(aStack, expression2, i);
+    calculate(stacks[0], expression1, i);
+    calculate(stacks[1], expression2, i);
 
     cout << "The result from pointer stack is ";
-    pStack->print();
+    stacks[0]->print();
     cout << "The result from array stack is ";
-    pStack->print();
+    stacks[1]->print();
 
     delete[] infixExpression;
     delete[] expression1;
     delete[] expression2;
-    delete pStack;
+    delete stacks[0];
+    delete stacks[1];
 
     return 0;
+}
+
+char *initStirng(int length)
+{
+    char *string = new char[length];
+
+    for (int i = 0; i < length; ++i)
+        string[i] = '\0';
+
+    return string;
 }
 
 char* converToPostfixt(Stack *stack, char* expression)
 {
     int i = 0;
-    char *result = new char[255];
+    char *result = initStirng(stringLength);
 
     for (unsigned int j = 0; expression[j] != '\n'; ++j)
     {

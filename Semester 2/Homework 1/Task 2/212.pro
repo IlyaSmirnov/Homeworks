@@ -5,7 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     pointerstack.cpp \
-    arraystack.cpp
+    arraystack.cpp \
+    stack.cpp
 
 HEADERS += \
     stack.h \

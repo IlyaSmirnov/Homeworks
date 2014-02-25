@@ -2,9 +2,8 @@
 
 using namespace std;
 
-ArrayStack::ArrayStack()
+ArrayStack::ArrayStack() : top(-1), Stack()
 {
-    top = -1;
 }
 
 void ArrayStack::push(int value)
@@ -24,7 +23,7 @@ int ArrayStack::pop()
 
 bool ArrayStack::isEmpty()
 {
-    return (top > -1);
+    return (top < 0);
 }
 
 void ArrayStack::print()

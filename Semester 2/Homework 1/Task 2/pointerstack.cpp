@@ -2,10 +2,8 @@
 
 using namespace std;
 
-
-PointerStack::PointerStack()
+PointerStack::PointerStack() : top(nullptr), Stack()
 {
-    top = nullptr;
 }
 
 PointerStack::~PointerStack()
