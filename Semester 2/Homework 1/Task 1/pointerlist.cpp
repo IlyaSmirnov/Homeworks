@@ -3,9 +3,8 @@
 
 using namespace std;
 
-PointerList::PointerList() : List()
-{
-    head = nullptr;
+PointerList::PointerList() : head(nullptr), List()
+  {
 }
 
 PointerList::~PointerList()
@@ -78,7 +77,7 @@ void PointerList::deleteValue(int value)
     }
 }
 
-bool PointerList::findvalue(int value) const
+bool PointerList::findValue(int value) const
 {
     ListElement *temp = head;
     while (temp != nullptr)
@@ -99,10 +98,11 @@ void PointerList::print() const
         while (temp != nullptr)
         {
             cout << temp->value << ' ';
-            cout << '\n';
 
             temp = temp->next;
         }
+
+        cout << '\n';
 
         return;
 }

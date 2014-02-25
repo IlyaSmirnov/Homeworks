@@ -1,4 +1,4 @@
-#include <pointerlist.h>
+#include "pointerlist.h"
 #include "arraylist.h"
 #include <iostream>
 
@@ -9,8 +9,8 @@ int main()
     cout << "Welcome to the program of the lists\n";
     cout << "Enter 1 if you want add some value to the lists\nEnter 2 if you want to delete some value from lists\nEnter 3 if you want to check if there are value in lists\nEnter 4 if you want to print lists\nEnter 0 if you want to exit\n";
 
-    PointerList *pointerList = new PointerList();
-    PointerList *arrayList = new PointerList();
+    List *pointerList = new PointerList();
+    List *arrayList = new ArrayList();
 
     enum userChoice { exit, add, del, check, print };
 
@@ -28,6 +28,9 @@ int main()
 
         case exit:
         {
+            delete pointerList;
+            delete arrayList;
+
             return 0;
         }
 
@@ -61,8 +64,8 @@ int main()
             int value = 0;
             cin >> value;
 
-            cout << (pointerList->findvalue(value) ? "There are this value in pointer list\n" : "There are not this value in pointer list\n");
-            cout << (arrayList->findvalue(value) ? "There are this value in array list\n" : "There are not this value in array list\n");
+            cout << (pointerList->findValue(value) ? "There are this value in pointer list\n" : "There are not this value in pointer list\n");
+            cout << (arrayList->findValue(value) ? "There are this value in array list\n" : "There are not this value in array list\n");
 
             break;
         }

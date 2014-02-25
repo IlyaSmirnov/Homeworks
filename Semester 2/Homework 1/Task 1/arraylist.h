@@ -6,7 +6,7 @@ class ArrayList : public List
 public:
     void addValue(int value);
     void deleteValue(int value);
-    bool findvalue(int value) const;
+    bool findValue(int value) const;
     void print() const;
     int getSize() const;
 

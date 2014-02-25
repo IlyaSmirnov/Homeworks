@@ -1,6 +1,9 @@
 #include "list.h"
 
-List::List()
+List::List() : size(0)
 {
-    size = 0;
+}
+
+List::~List()
+{
 }

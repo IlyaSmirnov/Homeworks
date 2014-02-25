@@ -7,6 +7,8 @@ void ArrayList::addValue(int value)
 {
     ++size;
     listElements[size - 1] = value;
+
+    return;
 }
 
 void ArrayList::deleteValue(int value)
@@ -22,9 +24,11 @@ void ArrayList::deleteValue(int value)
 
     for (int j = i; j < size; ++j)
         listElements[j] = listElements[j + 1];
+
+    return;
 }
 
-bool ArrayList::findvalue(int value) const
+bool ArrayList::findValue(int value) const
 {
     for (int i = 0; i < size; ++i)
         if (listElements[i] == value)
@@ -35,7 +39,7 @@ bool ArrayList::findvalue(int value) const
 
 void ArrayList::print() const
 {
-    for (int i = 0; i < size; ++i)
+    for (int i = size - 1; i >= 0; --i)
         cout << listElements[i] << ' ';
     cout << '\n';
 
