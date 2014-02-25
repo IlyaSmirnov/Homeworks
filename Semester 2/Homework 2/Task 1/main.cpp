@@ -58,6 +58,10 @@ int main()
         cout << array3[i] << ' ';
     }
 
+    delete bubbleSort;
+    delete quickSort;
+    delete heapSort;
+
     return 0;
 }
 

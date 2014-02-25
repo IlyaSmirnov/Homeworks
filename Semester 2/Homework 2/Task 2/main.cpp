@@ -12,8 +12,6 @@ int main()
     cin >> n;
 
     int** matrix = new int*[n];
-    int *firsLine = new int[n];
-
     for (int i = 0; i < n;++i)
         matrix[i] = new int[n];
 
@@ -38,6 +36,7 @@ int main()
     {
         Writer *writer = new ConsoleWriter();
         writer->write(matrix, n);
+        delete writer;
 
         break;
     }
@@ -46,6 +45,7 @@ int main()
     {
         Writer *writer = new FileWriter();
         writer->write(matrix, n);
+        delete writer;
 
         break;
     }
@@ -56,6 +56,8 @@ int main()
     for (int i = 0; i < n;++i)
             delete [] matrix[i];
         delete [] matrix;
+
+
 
     return 0;
 }
