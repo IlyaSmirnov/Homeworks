@@ -30,8 +30,6 @@ void PointerList::addValue(int value)
         head = temp;
 
         ++size;
-
-        return;
     }
     else
     {
@@ -39,13 +37,17 @@ void PointerList::addValue(int value)
         head = temp;
 
         ++size;
-
-        return;
     }
 }
 
 void PointerList::deleteValue(int value)
 {
+    if (head == nullptr)
+    {
+        cout << "The pointer list is empty!\n";
+        return;
+    }
+
     if (value == head->value)
     {
         ListElement *temp = head;
@@ -59,22 +61,19 @@ void PointerList::deleteValue(int value)
 
     ListElement *counter = head;
 
-    if (head != nullptr)
-    {
-        while ((counter != nullptr) && (counter->next->value != value))
+    while ((counter->next != nullptr) && (counter->next->value != value))
             counter = counter->next;
 
-        if (counter != nullptr)
-        {
-            ListElement *temp = counter->next;
-            counter->next = counter->next->next;
-            delete temp;
-            --size;
-
-            return;
-
-        }
+    if (counter->next == nullptr)
+    {
+        cout << "There are not such element in poiner list!\n";
+        return;
     }
+
+    ListElement *temp = counter->next;
+    counter->next = counter->next->next;
+    delete temp;
+    --size;
 }
 
 bool PointerList::findValue(int value) const
@@ -103,8 +102,6 @@ void PointerList::print() const
         }
 
         cout << '\n';
-
-        return;
 }
 
 int PointerList::getSize() const

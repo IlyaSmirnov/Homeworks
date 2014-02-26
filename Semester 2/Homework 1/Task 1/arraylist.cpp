@@ -7,25 +7,32 @@ void ArrayList::addValue(int value)
 {
     ++size;
     listElements[size - 1] = value;
-
-    return;
 }
 
 void ArrayList::deleteValue(int value)
 {
+    if (size == 0)
+    {
+        cout << "The array list is empty!\n";
+        return;
+    }
+
     int i = 0;
-    while ((listElements[i] != value) && (i < size))
+    while ((i < size) && (listElements[i] != value))
         ++i;
 
-    if ((size - 1 == i) && ((listElements[i] != value)))
+    if (size == i)
+    {
+        cout << "There are not such element in array list!\n";
+
         return;
+    }
 
-    --size;
 
-    for (int j = i; j < size; ++j)
+    for (int j = i; j < size - 1; ++j)
         listElements[j] = listElements[j + 1];
 
-    return;
+    --size;
 }
 
 bool ArrayList::findValue(int value) const
@@ -42,9 +49,6 @@ void ArrayList::print() const
     for (int i = size - 1; i >= 0; --i)
         cout << listElements[i] << ' ';
     cout << '\n';
-
-
-    return;
 }
 
 int ArrayList::getSize() const
