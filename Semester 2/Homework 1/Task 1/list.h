@@ -4,7 +4,7 @@ class List
 {
 public:
     List();
-    virtual ~List() = 0;
+    virtual ~List();
     virtual void addValue(int value) = 0;
     virtual void deleteValue(int value) = 0;
     virtual bool findValue(int value) const = 0;
