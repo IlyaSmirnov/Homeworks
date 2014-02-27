@@ -5,10 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     consolewriter.cpp \
-    filewriter.cpp
+    filewriter.cpp \
+    writer.cpp
 
 HEADERS += \
-    Writer.h \
     consolewriter.h \
-    filewriter.h
+    filewriter.h \
+    writer.h
 

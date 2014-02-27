@@ -5,5 +5,5 @@
 class ConsoleWriter : public Writer
 {
 public:
-    void write(int **array, int size);
+    void write(int **array, int size) const;
 };

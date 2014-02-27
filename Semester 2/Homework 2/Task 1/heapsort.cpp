@@ -2,33 +2,38 @@
 
 void downHeap(int a[], int k, int n)
 {
-    int newElt = a[k];
+    bool done = false;
+    int maxChild = 0;
 
-    while (k <= n / 2)
+    while ((k * 2 < n) && (!done))
     {
-        int child = 2 * k;
+        if (k * 2 == n)
+            maxChild = k * 2;
+        else
+            if (a[k * 2] > a[k * 2 + 1])
+                maxChild = k * 2;
+            else
+                maxChild = k * 2 + 1;
 
-        if ((child < n) && (a[child] < a[child + 1]))
-            child++;
+        if (a[k] < a[maxChild])
+        {
+            int temp = a[k];
+            a[k] = a[maxChild];
+            a[maxChild] = temp;
+            k = maxChild;
+        }
+        else
+            done = true;
 
-        if (newElt >= a[child])
-            break;
-
-        a[k] = a[child];
-        k = child;
     }
-
-    a[k] = newElt;
-
-    return;
 }
 
 void HeapSort::sort(int array[], int size)
 {
-    for (int i = (size / 2) - 1; i >= 0; --i)
+    for (int i = ((size - 1) / 2) - 1; i >= 0; --i)
         downHeap(array, i, size - 1);
 
-    for (int i = size - 1; i > 0; --i)
+    for (int i = size - 2; i > 0; --i)
     {
         int temp = array[i];
         array[i] = array[0];
