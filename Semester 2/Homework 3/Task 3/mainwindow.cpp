@@ -60,6 +60,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void showWarning()
+{
+    QMessageBox::warning(this, "Warning", "Enter the argument! Stop clicking on inappropriate buttons!", QMessageBox::Ok);
+}
+
 void MainWindow::clickedNumberButton(const QString &text)
 {
     if (calculator.isCalculated())
@@ -89,7 +94,7 @@ void MainWindow::clickedOperationButton(const QString &text)
 {
     if ((calculator.isAlreadyHaveOperation()) || (calculator.isCalculated()))
     {
-        QMessageBox::warning(this, "Warning", "Enter the argument! Stop clicking on inappropriate buttons!", QMessageBox::Ok);
+        showWarning();
         return;
     }
 
@@ -103,7 +108,7 @@ void MainWindow::clickedEqualityButton()
 {
     if (calculator.isCalculated())
     {
-        QMessageBox::warning(this, "Warning", "Enter the argument! Stop clicking on inappropriate buttons", QMessageBox::Ok);
+        showWarning();
         return;
     }
 
