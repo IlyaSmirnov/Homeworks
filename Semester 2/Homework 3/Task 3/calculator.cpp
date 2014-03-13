@@ -49,7 +49,7 @@ void Calculator::getArgument2(double argument2)
     this->argument2 = argument2;
 }
 
-void Calculator::getOperation(QString &operation)
+void Calculator::getOperation(const QString &operation)
 {
     isOperaionChosen = true;
     this->operation = operation;

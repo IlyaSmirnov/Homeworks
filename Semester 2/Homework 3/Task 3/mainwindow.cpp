@@ -60,7 +60,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void showWarning()
+void MainWindow::showWarning()
 {
     QMessageBox::warning(this, "Warning", "Enter the argument! Stop clicking on inappropriate buttons!", QMessageBox::Ok);
 }

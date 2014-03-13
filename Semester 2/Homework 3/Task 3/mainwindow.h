@@ -21,6 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     Calculator calculator;
+    void showWarning();
 
 private slots:
     void clickedNumberButton(const QString &text);

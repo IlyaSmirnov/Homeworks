@@ -13,7 +13,7 @@ public:
     ///take the second argument
     void getArgument2(double argument2);
     ///take operation
-    void getOperation(QString &operation);
+    void getOperation(const QString &operation);
     ///return true if class have operation which not ""
     bool isAlreadyHaveOperation();
     ///return true if calculator have calculate something
