@@ -26,20 +26,21 @@ void PointerStack::push(int value)
 
 int PointerStack::pop()
 {
+    if (isEmpty())
+        return INT_MIN;
+
     int result = top->value;
-    if (!isEmpty())
-    {
-        StackElement* temp = top;
-        top = top->next;
-        delete(temp);
-    }
+    StackElement* temp = top;
+    top = top->next;
+    delete(temp);
+
 
     return result;
 }
 
 bool PointerStack::isEmpty()
 {
-    return(top == nullptr);
+    return (top == nullptr);
 }
 
 void PointerStack::print()

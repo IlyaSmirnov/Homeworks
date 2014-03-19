@@ -1,5 +1,6 @@
 #include "arraystack.h"
 #include "pointerstack.h"
+#include "stackcalculatortest.h"
 
 const int stringLength = 255;
 
@@ -11,9 +12,11 @@ char *initStirng(int length);
 
 int main()
 {
-    cout << "Welcome to the program of stack calculator\n";
-    cout << "Enter expression you want to calculate ";
+    StackCalculatorTest test;
+    QTest::qExec(&test);
 
+    cout << '\n' << "Welcome to the program of stack calculator\n";
+    cout << "Enter expression you want to calculate ";
 
     char *infixExpression = initStirng(stringLength);
     int i = 0;

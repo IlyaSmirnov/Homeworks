@@ -1,11 +1,15 @@
 #include "pointerlist.h"
 #include "arraylist.h"
 #include <iostream>
+#include "listtest.h"
 
 using namespace std;
 
 int main()
 {
+    ListTest test;
+    QTest::qExec(&test);
+
     cout << "Welcome to the program of the lists\n";
     cout << "Enter 1 if you want add some value to the lists\nEnter 2 if you want to delete some value from lists\nEnter 3 if you want to check if there are value in lists\nEnter 4 if you want to print lists\nEnter 0 if you want to exit\n";
 

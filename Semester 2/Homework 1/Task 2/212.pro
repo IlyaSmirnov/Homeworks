@@ -1,7 +1,8 @@
+QT += testlib
 TEMPLATE = app
 CONFIG += console
+CONFIG += c++11
 CONFIG -= app_bundle
-CONFIG -= qt
 
 SOURCES += main.cpp \
     pointerstack.cpp \
@@ -11,6 +12,5 @@ SOURCES += main.cpp \
 HEADERS += \
     stack.h \
     pointerstack.h \
-    arraystack.h
-
-QMAKE_CXXFLAGS += -std=c++0x
+    arraystack.h \
+    stackcalculatortest.h

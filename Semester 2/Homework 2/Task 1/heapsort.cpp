@@ -33,7 +33,7 @@ void HeapSort::sort(int array[], int size)
     for (int i = ((size - 1) / 2) - 1; i >= 0; --i)
         downHeap(array, i, size - 1);
 
-    for (int i = size - 2; i > 0; --i)
+    for (int i = size - 1; i > 0; --i)
     {
         int temp = array[i];
         array[i] = array[0];

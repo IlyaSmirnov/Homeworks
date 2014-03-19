@@ -16,9 +16,14 @@ void ArrayStack::push(int value)
 
 int ArrayStack::pop()
 {
+    if (!isEmpty())
+    {
     --top;
 
     return stackElements[top + 1];
+    }
+    else
+        return INT_MIN;
 }
 
 bool ArrayStack::isEmpty()
@@ -38,7 +43,8 @@ void ArrayStack::print()
 
 void ArrayStack::deleteTop()
 {
-    --top;
+    if (!isEmpty())
+        --top;
 
     return;
 }

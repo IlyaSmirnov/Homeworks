@@ -1,7 +1,8 @@
+QT += testlib
 TEMPLATE = app
 CONFIG += console
+CONFIG += c++11
 CONFIG -= app_bundle
-CONFIG -= qt
 
 SOURCES += main.cpp \
     pointerlist.cpp \
@@ -11,6 +12,7 @@ SOURCES += main.cpp \
 HEADERS += \
     list.h \
     pointerlist.h \
-    arraylist.h
+    arraylist.h \
+    listtest.h
 
 QMAKE_CXXFLAGS += -std=c++0x

@@ -1,12 +1,13 @@
 #include <iostream>
-#include "BubbleSort.h"
-#include "QuickSort.h"
-#include "HeapSort.h"
+#include "sortertest.h"
 
 using namespace std;
 
 int main()
 {
+    SorterTest test;
+    QTest::qExec(&test);
+
     cout << "Welcome to the program of sorting of array\n";
 
     cout << "Enter size of array ";
