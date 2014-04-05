@@ -12,5 +12,6 @@ OTHER_FILES +=
 
 HEADERS += \
     hashTable.h \
-    hashfunction.h
+    hashfunction.h \
+    hashTableTest.h
 

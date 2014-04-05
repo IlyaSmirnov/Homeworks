@@ -1,10 +1,14 @@
 #include "hashTable.h"
 #include <QTextStream>
+#include "hashTableTest.h"
 
 using namespace std;
 
 int main()
 {
+    HashTableTest test;
+    QTest::qExec(&test);
+
     cout << "Welcome to the program of the hash table\n";
     cout << "Enter 1 if you want add some string to table\nEnter 2 if you want to delete some value from table\nEnter 3 if you want to check if there are value in table\nEnter 4 if you want to print statisctics\nEnter 5 if you want to change hash function\nEnter 0 if you want to exit\n";
 

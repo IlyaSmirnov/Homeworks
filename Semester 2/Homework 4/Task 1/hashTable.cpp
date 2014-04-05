@@ -12,14 +12,14 @@ HashTable::~HashTable()
     delete [] tableElement;
 }
 
-void HashTable::add(QString &string)
+void HashTable::add(QString string)
 {
     if (inTable(string))
         return;
     tableElement[hashFunction.calculate(string)].append(string);
 }
 
-void HashTable::del(QString &string)
+void HashTable::del(QString string)
 {
     if(!inTable(string))
     {
@@ -30,7 +30,7 @@ void HashTable::del(QString &string)
     tableElement[hashFunction.calculate(string)].removeOne(string);
 }
 
-bool HashTable::inTable(QString &string)
+bool HashTable::inTable(QString string)
 {
     return tableElement[hashFunction.calculate(string)].contains(string);
 }

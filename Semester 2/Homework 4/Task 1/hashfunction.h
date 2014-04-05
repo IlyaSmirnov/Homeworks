@@ -1,5 +1,8 @@
+#pragma once
+
 #include <QObject>
 
+///Calcualte hashfuction which user want
 class HashFunction
 {
 public:
