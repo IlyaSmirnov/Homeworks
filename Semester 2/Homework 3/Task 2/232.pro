@@ -1,14 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-03-08T21:57:29
+# Project created by QtCreator 2014-04-05T16:04:42
 #
 #-------------------------------------------------
+
 
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = 233
+TARGET = 232
 TEMPLATE = app
 
 QT += testlib
@@ -22,3 +23,5 @@ HEADERS  += mainwindow.h \
     calculatorTest.h
 
 FORMS    += mainwindow.ui
+
+OTHER_FILES +=
