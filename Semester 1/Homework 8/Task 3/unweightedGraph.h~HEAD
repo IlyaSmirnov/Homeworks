@@ -1,0 +1,32 @@
+#pragma once
+<<<<<<< HEAD:Homework 9/Task 3/matrixGraph.h
+#include <iostream>
+
+namespace graph
+{
+	int** createGraph(int size);
+	void deleteGraph(int **graph, int size);
+	void show(int **graph, int size);
+=======
+#include "iostream"
+
+namespace graph
+{
+	struct Path
+	{
+		int vertex;
+		Path *next;
+	};
+
+	struct Graph
+	{
+		Path *head;
+	};
+
+	Graph createGraph();
+	void deleteGraph(Graph &graph);
+
+	void addPath(Graph &graph, int vertex);
+	void printGraph(Graph *graph, int size);
+>>>>>>> df61d3ed87b6a9b7a03e30283f2dbb54e1f692e5:Semester 1/Homework 8/Task 3/unweightedGraph.h
+}
