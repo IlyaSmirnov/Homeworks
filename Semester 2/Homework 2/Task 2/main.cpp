@@ -1,10 +1,14 @@
 #include "consolewriter.h"
 #include "filewriter.h"
+#include "WriterTest.h"
 
 using namespace std;
 
 int main()
 {
+    WriterTest test;
+    QTest::qExec(&test);
+
     cout << "Welcome to the programm which print your array of n^2 elements in spiral oreder\n";
 
     int n = 0;

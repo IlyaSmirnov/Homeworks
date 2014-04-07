@@ -2,8 +2,11 @@
 
 using namespace std;
 
-void FileWriter::write(int **array, int size) const
+bool FileWriter::write(int **array, int size) const
 {
+    if (size % 2 == 0)
+        return false;
+
     fstream output("output.txt", ios::out);
     int *spiralWalk = walkOnSpiral(array, size);
 
@@ -12,4 +15,6 @@ void FileWriter::write(int **array, int size) const
 
     delete [] spiralWalk;
     output.close();
+
+    return true;
 }

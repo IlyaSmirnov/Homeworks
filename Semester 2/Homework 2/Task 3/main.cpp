@@ -1,11 +1,15 @@
 #include <iostream>
 #include "QuickSort.h"
+#include "MatrixSortTest.h"
 
 using namespace std;
 using namespace Sort;
 
 int main()
 {
+    MatrixSortTest test;
+    QTest::qExec(&test);
+
     cout << "Welcome to the program of sort of matrix" << endl;
 
     cout << "Enter n ";

@@ -1,7 +1,8 @@
+QT += testlib
 TEMPLATE = app
 CONFIG += console
+CONFIG += c++11
 CONFIG -= app_bundle
-CONFIG -= qt
 
 SOURCES += main.cpp \
     consolewriter.cpp \
@@ -11,5 +12,6 @@ SOURCES += main.cpp \
 HEADERS += \
     consolewriter.h \
     filewriter.h \
-    writer.h
+    writer.h \
+    WriterTest.h
 
