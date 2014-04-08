@@ -21,9 +21,9 @@ int HashFunction::calculate(QString &string)
     return hash;
 }
 
-void HashFunction::changeState(int value)
+void HashFunction::changeState(int value, HashFunction hashFunction)
 {
-    if (value == 0)
+    if ((value == 0) && (hashFunction.state == another))
         state = prime;
     else
         state = another;

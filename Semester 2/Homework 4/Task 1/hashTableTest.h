@@ -19,30 +19,34 @@ private slots:
     void  init()
     {
         delete table;
-        HashTable *calculator = new HashTable(1000000);
+        HashTable *table = new HashTable(1000000);
     }
 
     void addTest()
     {
-        table->add(QString("156"));
-        QVERIFY(table->inTable(QString("156")));
+        QString test = "156";
+        table->add(test);
+        QVERIFY(table->inTable(test));
     }
 
     void checkUnadded()
     {
-        QVERIFY(!table->inTable(QString("156")));
+        QString test = "156";
+        QVERIFY(!table->inTable(test));
     }
 
     void deleteTest()
     {
-        table->add(QString("156"));
-        table->del(QString("156"));
-        QVERIFY(!table->inTable(QString("156")));
+        QString test = "156";
+        table->add(test);
+        table->del(test);
+        QVERIFY(!table->inTable(test));
     }
 
     void deleteUnaddedTest()
     {
-        table->del(QString("156"));
+        QString test = "156";
+        table->del(test);
     }
 
 

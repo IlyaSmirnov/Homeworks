@@ -12,22 +12,22 @@ public:
     ~HashTable();
 
     ///Add string to hashtable
-    void add(QString string);
+    void add(QString &string);
     ///Delete string from hashtable
-    void del(QString string);
+    void del(QString &string);
     ///Check string in hashtable
-    bool inTable(QString string);
+    bool inTable(QString &string);
     ///Change hash function
-    void changeHashFunction(int value);
+    void changeHashFunction(int value, HashFunction *hashFunction);
 
     ///Calculate load factor
     double loadFactor();
     ///Calculate average length of chains
     int averageLength();
     ///Calculate amount of words
-    int amount();
+    int wordsTotal();
     ///Calculate how many empty cells left
-    int empty();
+    int emptyCells();
 
 private:
     int hashTableSize;

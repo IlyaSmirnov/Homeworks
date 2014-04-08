@@ -19,6 +19,8 @@ public:
     double calculate(QString &string);
 
 private:
+    ///make tree from string
     void parse(QString &string, TreeNode *&node, int &position);
+    ///root
     TreeNode *root;
 };

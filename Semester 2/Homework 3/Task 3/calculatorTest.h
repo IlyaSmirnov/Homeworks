@@ -24,33 +24,33 @@ private slots:
 
     void plusTest()
     {
-        calculator->getArgument1(2);
-        calculator->getArgument2(3);
-        calculator->getOperation("+");
+        calculator->setArgument1(2);
+        calculator->setArgument2(3);
+        calculator->setOperation("+");
         QVERIFY((calculator->calculate() == 5));
     }
 
     void minusTest()
     {
-        calculator->getArgument1(2);
-        calculator->getArgument2(3);
-        calculator->getOperation("-");
+        calculator->setArgument1(2);
+        calculator->setArgument2(3);
+        calculator->setOperation("-");
         QVERIFY((calculator->calculate() == -1));
     }
 
     void multTest()
     {
-        calculator->getArgument1(6);
-        calculator->getArgument2(7);
-        calculator->getOperation("*");
+        calculator->setArgument1(6);
+        calculator->setArgument2(7);
+        calculator->setOperation("*");
         QVERIFY((calculator->calculate() == 42));
     }
 
     void divTest()
     {
-        calculator->getArgument1(4);
-        calculator->getArgument2(2);
-        calculator->getOperation("/");
+        calculator->setArgument1(4);
+        calculator->setArgument2(2);
+        calculator->setOperation("/");
         QVERIFY((calculator->calculate() == 2));
     }
 

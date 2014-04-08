@@ -8,7 +8,7 @@ class HashFunction
 public:
     HashFunction();
     int calculate(QString &string);
-    void changeState(int value);
+    void changeState(int value, HashFunction hashFunction);
 
 private:
     enum userchoice{ prime, another };

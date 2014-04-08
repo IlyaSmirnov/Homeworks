@@ -98,8 +98,8 @@ void MainWindow::clickedOperationButton(const QString &text)
         return;
     }
 
-    calculator.getArgument1(ui->result->text().toDouble());
-    calculator.getOperation(text);
+    calculator.setArgument1(ui->result->text().toDouble());
+    calculator.setOperation(text);
 
     ui->result->setText("0");
 }
@@ -112,7 +112,7 @@ void MainWindow::clickedEqualityButton()
         return;
     }
 
-    calculator.getArgument2(ui->result->text().toDouble());
+    calculator.setArgument2(ui->result->text().toDouble());
     if (calculator.calculate() == -666)
     {
         ui->result->setText("Incorrectly");

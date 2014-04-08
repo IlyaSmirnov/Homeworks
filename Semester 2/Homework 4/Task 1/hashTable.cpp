@@ -12,14 +12,14 @@ HashTable::~HashTable()
     delete [] tableElement;
 }
 
-void HashTable::add(QString string)
+void HashTable::add(QString &string)
 {
     if (inTable(string))
         return;
     tableElement[hashFunction.calculate(string)].append(string);
 }
 
-void HashTable::del(QString string)
+void HashTable::del(QString &string)
 {
     if(!inTable(string))
     {
@@ -30,36 +30,36 @@ void HashTable::del(QString string)
     tableElement[hashFunction.calculate(string)].removeOne(string);
 }
 
-bool HashTable::inTable(QString string)
+bool HashTable::inTable(QString &string)
 {
     return tableElement[hashFunction.calculate(string)].contains(string);
 }
 
-void HashTable::changeHashFunction(int value)
+void HashTable::changeHashFunction(int value, HashFunction *hashFunction)
 {
-    hashFunction.changeState(value);
+    hashFunction.changeState(hashFunction, value);
 }
 
 double HashTable::loadFactor()
 {
-    double temp = amount() * 1.0 / hashTableSize;
+    double temp = wordsTotal() * 1.0 / hashTableSize;
 
     return temp;
 }
 
 int HashTable::averageLength()
 {
-    if (amount() == 0)
+    if (wordsTotal() == 0)
         return 0;
 
     int sum = 0;
     for (int i = 0; i < hashTableSize; i++)
         sum += tableElement[i].size();
 
-    return sum / (hashTableSize - empty());
+    return sum / (hashTableSize - emptyCells());
 }
 
-int HashTable::amount()
+int HashTable::wordsTotal()
 {
     int result = 0;
 
@@ -71,7 +71,7 @@ int HashTable::amount()
     return result;
 }
 
-int HashTable::empty()
+int HashTable::emptyCells()
 {
     int result = 0;
     for (int i = 0; i < hashTableSize; i++)

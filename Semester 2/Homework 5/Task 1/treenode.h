@@ -16,6 +16,8 @@ public:
     ///print tree to console
     virtual void print() = 0;
 
+    ///left child
     TreeNode *left;
+    ///right child
     TreeNode *right;
 };

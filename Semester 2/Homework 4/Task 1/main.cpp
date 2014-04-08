@@ -92,8 +92,8 @@ int main()
         {
             printf("%s%f\n", "Load factor is ", hashTable->loadFactor());
             printf("%s%d\n", "Average length of chain is ", hashTable->averageLength());
-            printf("%s%d\n", "Amount of words ", hashTable->amount());
-            printf("%s%d\n", "Amount of empty cells is ", hashTable->empty());
+            printf("%s%d\n", "Amount of words ", hashTable->wordsTotal());
+            printf("%s%d\n", "Amount of empty cells is ", hashTable->emptyCells());
 
             break;
         }

@@ -9,11 +9,11 @@ public:
     Calculator();
     double calculate();
     ///take the first argument
-    void getArgument1(double argument1);
+    void setArgument1(double argument1);
     ///take the second argument
-    void getArgument2(double argument2);
+    void setArgument2(double argument2);
     ///take operation
-    void getOperation(const QString &operation);
+    void setOperation(const QString &operation);
     ///return true if class have operation which not ""
     bool isAlreadyHaveOperation();
     ///return true if calculator have calculate something

@@ -39,17 +39,17 @@ double Calculator::calculate()
        }
 }
 
-void Calculator::getArgument1(double argument1)
+void Calculator::setArgument1(double argument1)
 {
     this->argument1 = argument1;
 }
 
-void Calculator::getArgument2(double argument2)
+void Calculator::setArgument2(double argument2)
 {
     this->argument2 = argument2;
 }
 
-void Calculator::getOperation(const QString &operation)
+void Calculator::setOperation(const QString &operation)
 {
     isOperaionChosen = true;
     this->operation = operation;
