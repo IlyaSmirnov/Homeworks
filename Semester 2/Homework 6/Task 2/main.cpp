@@ -1,5 +1,4 @@
 #include "uniquelist.h"
-#include <iostream>
 #include "listtest.h"
 
 using namespace std;
