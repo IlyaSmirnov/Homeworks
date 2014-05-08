@@ -4,5 +4,5 @@ class MyError
 {
 public:
     class AddExist {};
-    class DeleteFromEmpty {};
+    class DeleteUnaddedElement {};
 };

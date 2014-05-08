@@ -42,7 +42,7 @@ void List::addValue(int value)
 void List::deleteValue(int value)
 {
     if (head == nullptr)
-        throw MyError::DeleteFromEmpty();
+        throw MyError::DeleteUnaddedElement();
 
     if (value == head->value)
     {
@@ -62,7 +62,7 @@ void List::deleteValue(int value)
 
     if (counter->next == nullptr)
     {
-        cout << "There are not such element in poiner list!\n";
+        throw MyError::DeleteUnaddedElement();
         return;
     }
 
