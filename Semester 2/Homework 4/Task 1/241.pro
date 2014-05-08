@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     hashTable.cpp \
     hashfunction.cpp
 
-OTHER_FILES +=
+OTHER_FILES += \
+    241.pro.user
 
 HEADERS += \
     hashTable.h \

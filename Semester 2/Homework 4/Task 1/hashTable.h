@@ -18,7 +18,7 @@ public:
     ///Check string in hashtable
     bool inTable(QString &string);
     ///Change hash function
-    void changeHashFunction(int value, HashFunction *hashFunction);
+    void changeHashFunction(HashFunction *function);
 
     ///Calculate load factor
     double loadFactor();
@@ -32,5 +32,5 @@ public:
 private:
     int hashTableSize;
     QStringList *tableElement;
-    HashFunction hashFunction;
+    HashFunction *hashFunction;
 };

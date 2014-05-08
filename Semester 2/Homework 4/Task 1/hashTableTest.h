@@ -16,28 +16,22 @@ public:
     }
 
 private slots:
-    void  init()
-    {
-        delete table;
-        HashTable *table = new HashTable(1000000);
-    }
-
     void addTest()
     {
-        QString test = "156";
+        QString test = "1";
         table->add(test);
         QVERIFY(table->inTable(test));
     }
 
     void checkUnadded()
     {
-        QString test = "156";
+        QString test = "15";
         QVERIFY(!table->inTable(test));
     }
 
     void deleteTest()
     {
-        QString test = "156";
+        QString test = "1";
         table->add(test);
         table->del(test);
         QVERIFY(!table->inTable(test));
@@ -45,11 +39,9 @@ private slots:
 
     void deleteUnaddedTest()
     {
-        QString test = "156";
+        QString test = "1";
         table->del(test);
     }
-
-
 
 private:
     HashTable *table = new HashTable(1000000);

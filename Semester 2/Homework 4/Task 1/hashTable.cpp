@@ -4,19 +4,21 @@ using namespace std;
 
 HashTable::HashTable(int size) : hashTableSize(size)
 {
+    hashFunction = new HashFunction();
     tableElement = new QStringList[size];
 }
 
 HashTable::~HashTable()
 {
     delete [] tableElement;
+    delete hashFunction;
 }
 
 void HashTable::add(QString &string)
 {
     if (inTable(string))
         return;
-    tableElement[hashFunction.calculate(string)].append(string);
+    tableElement[hashFunction->calculate(string)].append(string);
 }
 
 void HashTable::del(QString &string)
@@ -27,17 +29,19 @@ void HashTable::del(QString &string)
         return;
     }
 
-    tableElement[hashFunction.calculate(string)].removeOne(string);
+    tableElement[hashFunction->calculate(string)].removeOne(string);
 }
 
 bool HashTable::inTable(QString &string)
 {
-    return tableElement[hashFunction.calculate(string)].contains(string);
+    return tableElement[hashFunction->calculate(string)].contains(string);
 }
 
-void HashTable::changeHashFunction(int value, HashFunction *hashFunction)
+void HashTable::changeHashFunction(HashFunction *function)
 {
-    hashFunction.changeState(hashFunction, value);
+    HashFunction *temp = hashFunction;
+    hashFunction = function;
+    delete temp;
 }
 
 double HashTable::loadFactor()

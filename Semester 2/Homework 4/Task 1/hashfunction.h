@@ -2,13 +2,13 @@
 
 #include <QObject>
 
-///Calcualte hashfuction which user want
+///calcualte hashfuction which user want
 class HashFunction
 {
 public:
     HashFunction();
+    HashFunction(int value);
     int calculate(QString &string);
-    void changeState(int value, HashFunction hashFunction);
 
 private:
     enum userchoice{ prime, another };

@@ -16,7 +16,7 @@ int main()
 
     userChoice choice = add;
 
-    HashTable *hashTable = new HashTable(100000000);
+    HashTable *hashTable = new HashTable(10000);
 
     const int stringLength = 255;
 
@@ -45,9 +45,9 @@ int main()
             word.resize(stringLength);
             word.clear();
 
-            QTextStream inp(stdin);
+            QTextStream input(stdin);
 
-            inp >> word;
+            input >> word;
 
             hashTable->add(word);
 
@@ -62,9 +62,9 @@ int main()
             word.resize(stringLength);
             word.clear();
 
-            QTextStream inp(stdin);
+            QTextStream input(stdin);
 
-            inp >> word;
+            input >> word;
 
             hashTable->del(word);
 
@@ -79,9 +79,9 @@ int main()
             word.resize(stringLength);
             word.clear();
 
-            QTextStream inp(stdin);
+            QTextStream input(stdin);
 
-            inp >> word;
+            input >> word;
 
             cout << (hashTable->inTable(word) ? "There are such elements\n" : "There are not such elements\n");
 
@@ -90,10 +90,10 @@ int main()
 
         case print:
         {
-            printf("%s%f\n", "Load factor is ", hashTable->loadFactor());
-            printf("%s%d\n", "Average length of chain is ", hashTable->averageLength());
-            printf("%s%d\n", "Amount of words ", hashTable->wordsTotal());
-            printf("%s%d\n", "Amount of empty cells is ", hashTable->emptyCells());
+            cout << "Load factor is " << hashTable->loadFactor() << endl;
+            cout << "Average length of chain is " << hashTable->averageLength() << endl;
+            cout << "Amount of words " << hashTable->wordsTotal() << endl;
+            cout << "Amount of empty cells is " << hashTable->emptyCells() << endl;
 
             break;
         }
@@ -107,7 +107,7 @@ int main()
             if ((value < 0) || (value > 1))
                 cout << "incorrectly";
             else
-                hashTable->changeHashFunction(value);
+                hashTable->changeHashFunction(new HashFunction(value));
 
             break;
         }

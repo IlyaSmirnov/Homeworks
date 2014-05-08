@@ -4,6 +4,14 @@ HashFunction::HashFunction() : state(prime)
 {
 }
 
+HashFunction::HashFunction(int value)
+{
+    if (value == 1)
+        state = another;
+    else
+        state = prime;
+}
+
 int HashFunction::calculate(QString &string)
 {
     int hash = 0;
@@ -19,12 +27,4 @@ int HashFunction::calculate(QString &string)
     }
 
     return hash;
-}
-
-void HashFunction::changeState(int value, HashFunction hashFunction)
-{
-    if ((value == 0) && (hashFunction.state == another))
-        state = prime;
-    else
-        state = another;
 }
