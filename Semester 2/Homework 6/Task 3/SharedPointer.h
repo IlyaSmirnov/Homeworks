@@ -17,6 +17,11 @@ public:
     ///Operator == overloading
     bool operator == (SharedPointer &sharedPointer);
 
+    ///Get memory
+    int getMemory();
+    ///Get pointer
+    T *getPointer();
+
 private:
     Pointer<T> *pointer = new Pointer<T>();
     int memory;
@@ -56,7 +61,13 @@ SharedPointer<T> &SharedPointer<T>::operator = (SharedPointer<T> &sharedPointer)
 }
 
 template<typename T>
-bool SharedPointer<T>::operator == (SharedPointer &sharedPointer)
+int SharedPointer<T>::getMemory()
 {
-    return ((memory == sharedPointer.memory) && (pointer == sharedPointer.pointer));
+    return memory;
+}
+
+template<typename T>
+T *SharedPointer<T>::getPointer()
+{
+    return pointer->pointer;
 }
