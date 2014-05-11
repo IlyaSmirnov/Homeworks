@@ -24,49 +24,51 @@ public:
 
 private:
     Pointer<T> *pointer;
-    int memory;
 };
 
 template<typename T>
-SharedPointer<T>::SharedPointer() : memory(0)
+SharedPointer<T>::SharedPointer()
 {
+    pointer->memory = 0;
+    pointer->pointer = nullptr;
 }
 
 template<typename T>
-SharedPointer<T>::SharedPointer(T *pointer) : pointer(new Pointer<T>(pointer)), memory(1)
+SharedPointer<T>::SharedPointer(T *pointer) : pointer(new Pointer<T>(pointer))
 {
-
+    this->pointer->memory = 1;
 }
 
 template<typename T>
 SharedPointer<T>::~SharedPointer()
 {
-    --memory;
-    if (memory == 0)
+    --pointer->memory;
+    if (pointer->memory == 0)
         delete pointer;
 }
 
 template<typename T>
-SharedPointer<T>::SharedPointer(SharedPointer *sharedPointer) : pointer(sharedPointer->pointer), memory(sharedPointer->memory)
+SharedPointer<T>::SharedPointer(SharedPointer *sharedPointer) : pointer(sharedPointer->pointer)
 {
+    pointer->memory = sharedPointer->memory;
 }
 
 template<typename T>
 SharedPointer<T> &SharedPointer<T>::operator = (SharedPointer<T> &sharedPointer)
 {
-    --memory;
-    if (memory == 0)
+    --pointer->memory;
+    if (pointer->memory == 0)
         delete pointer;
 
     pointer = sharedPointer.pointer;
-    ++memory;
+    ++pointer->memory;
     return *this;
 }
 
 template<typename T>
 int SharedPointer<T>::getMemory()
 {
-    return memory;
+    return pointer->memory;
 }
 
 template<typename T>

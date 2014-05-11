@@ -6,6 +6,7 @@ struct Pointer
     ~Pointer();
 
     T *pointer;
+    int memory;
 };
 
 template<typename T>
