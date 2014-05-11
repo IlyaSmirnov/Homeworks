@@ -23,7 +23,7 @@ public:
     T *getPointer();
 
 private:
-    Pointer<T> *pointer = new Pointer<T>();
+    Pointer<T> *pointer;
     int memory;
 };
 
@@ -54,9 +54,12 @@ SharedPointer<T>::SharedPointer(SharedPointer *sharedPointer) : pointer(sharedPo
 template<typename T>
 SharedPointer<T> &SharedPointer<T>::operator = (SharedPointer<T> &sharedPointer)
 {
-    --sharedPointer.memory;
+    --memory;
+    if (memory == 0)
+        delete pointer;
+
     pointer = sharedPointer.pointer;
-    ++sharedPointer.memory;
+    ++memory;
     return *this;
 }
 
