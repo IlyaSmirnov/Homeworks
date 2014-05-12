@@ -11,11 +11,9 @@ public:
     ~SharedPointer();
 
     ///Copy constructor
-    SharedPointer(SharedPointer *sharedPointer);
+    SharedPointer(SharedPointer const &sharedPointer);
     ///Operator = overloading
-    SharedPointer &operator = (SharedPointer &sharedPointer);
-    ///Operator == overloading
-    bool operator == (SharedPointer &sharedPointer);
+    SharedPointer &operator =(SharedPointer const &sharedPointer);
 
     ///Get memory
     int getMemory();
@@ -48,13 +46,13 @@ SharedPointer<T>::~SharedPointer()
 }
 
 template<typename T>
-SharedPointer<T>::SharedPointer(SharedPointer *sharedPointer) : pointer(sharedPointer->pointer)
+SharedPointer<T>::SharedPointer(SharedPointer const &sharedPointer) : pointer(sharedPointer.pointer)
 {
-    pointer->memory = sharedPointer->memory;
+    pointer->memory = sharedPointer.pointer->memory;
 }
 
 template<typename T>
-SharedPointer<T> &SharedPointer<T>::operator = (SharedPointer<T> &sharedPointer)
+SharedPointer<T> &SharedPointer<T>::operator =(SharedPointer<T> const &sharedPointer)
 {
     --pointer->memory;
     if (pointer->memory == 0)

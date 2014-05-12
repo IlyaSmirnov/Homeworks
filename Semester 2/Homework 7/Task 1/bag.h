@@ -3,7 +3,10 @@
 #include <iostream>
 #include <QMap>
 
+#include "myError.h"
+
 using namespace std;
+using namespace MyError;
 
 ///Multiset
 template <typename T>
@@ -44,7 +47,7 @@ void Bag<T>::del(const T& value)
 {
     if (tree.empty())
     {
-        cout << "Bag is empty" << endl;
+        throw DelFromEmpty();
         return;
     }
 
@@ -55,7 +58,7 @@ void Bag<T>::del(const T& value)
             --tree[value];
     else
     {
-        cout << "There are not such value in bag" << endl;
+        throw DeleteUnaddedElement();
         return;
     }
 }
