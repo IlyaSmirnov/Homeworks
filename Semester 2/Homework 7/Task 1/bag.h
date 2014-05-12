@@ -5,15 +5,19 @@
 
 using namespace std;
 
+///Multiset
 template <typename T>
 class Bag
 {
 public:
     Bag();
-
+    ///Add value to bag
     void add(const T& value);
+    ///del value from bag
     void del(const T& value);
+    ///check if there are such value in bag
     bool check(const T& value);
+    ///print bag
     void print();
 
 private:
@@ -29,12 +33,6 @@ Bag<T>::Bag()
 template <typename T>
 void Bag<T>::add(const T& value)
 {
-    if (tree.empty())
-    {
-        cout << "Multiset is empty" << endl;
-        return;
-    }
-
     if (check(value))
         ++tree[value];
     else
@@ -44,11 +42,22 @@ void Bag<T>::add(const T& value)
 template <typename T>
 void Bag<T>::del(const T& value)
 {
+    if (tree.empty())
+    {
+        cout << "Bag is empty" << endl;
+        return;
+    }
+
     if (check(value))
         if (tree[value] == 1)
             tree.remove(value);
         else
             --tree[value];
+    else
+    {
+        cout << "There are not such value in bag" << endl;
+        return;
+    }
 }
 
 template <typename T>
