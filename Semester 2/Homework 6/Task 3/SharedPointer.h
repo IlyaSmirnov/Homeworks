@@ -48,7 +48,8 @@ SharedPointer<T>::~SharedPointer()
 template<typename T>
 SharedPointer<T>::SharedPointer(SharedPointer const &sharedPointer) : pointer(sharedPointer.pointer)
 {
-    pointer->memory = sharedPointer.pointer->memory;
+    pointer = sharedPointer.pointer;
+    ++pointer->memory;
 }
 
 template<typename T>
