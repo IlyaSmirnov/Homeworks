@@ -6,7 +6,7 @@
 #include "myError.h"
 
 using namespace std;
-using namespace MyError;
+//using namespace MyError;
 
 ///Multiset
 template <typename T>
@@ -15,11 +15,11 @@ class Bag
 public:
     Bag();
     ///Add value to bag
-    void add(const T& value);
+    void add(const T &value);
     ///del value from bag
-    void del(const T& value);
+    void del(const T &value);
     ///check if there are such value in bag
-    bool check(const T& value);
+    bool check(const T &value);
     ///print bag
     void print();
 
@@ -34,7 +34,7 @@ Bag<T>::Bag()
 }
 
 template <typename T>
-void Bag<T>::add(const T& value)
+void Bag<T>::add(const T &value)
 {
     if (check(value))
         ++tree[value];
@@ -43,11 +43,11 @@ void Bag<T>::add(const T& value)
 }
 
 template <typename T>
-void Bag<T>::del(const T& value)
+void Bag<T>::del(const T &value)
 {
     if (tree.empty())
     {
-        throw DelFromEmpty();
+        throw MyError::DelFromEmpty();
         return;
     }
 
@@ -58,13 +58,13 @@ void Bag<T>::del(const T& value)
             --tree[value];
     else
     {
-        throw DeleteUnaddedElement();
+        throw MyError::DeleteUnaddedElement();
         return;
     }
 }
 
 template <typename T>
-bool Bag<T>::check(const T& value)
+bool Bag<T>::check(const T &value)
 {
     return tree.contains(value);
 }

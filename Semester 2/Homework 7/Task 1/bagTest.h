@@ -13,11 +13,6 @@ public:
     explicit BagTest(QObject *parent = 0) : QObject(parent) {}
 
 private slots:
-    void delFromEmpty()
-    {
-        bag.del(5);
-    }
-
     void addTest()
     {
         bag.add(3);
@@ -29,11 +24,6 @@ private slots:
         bag.add(4);
         bag.del(4);
         QVERIFY(!bag.check(4));
-    }
-
-    void delUnaddedTest()
-    {
-        bag.del(5);
     }
 
 private:
