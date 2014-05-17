@@ -1,20 +1,27 @@
 #pragma once
 #include <QVector>
 
+///vector
 template<typename T, int dim>
 class Vector
 {
 public:
     Vector();
     Vector(T *initData);
+    ///copy constructer
     Vector(const Vector &otherVector);
     ~Vector();
 
+    ///return true if it is zero vector
     bool isZero();
 
+    ///addition
     Vector operator +(const Vector& otherVector);
+    ///subtraction
     Vector operator -(const Vector& otherVector);
+    ///scalar product
     T operator *(const Vector& otherVector);
+    ///equality
     bool operator ==(Vector &otherVector);
 
 private:
@@ -63,7 +70,7 @@ bool Vector<T, dim>::isZero()
 template <typename T, int dim>
 Vector<T, dim> Vector<T, dim>::operator +(const Vector &otherVector)
 {
-    Vector<T, data> sum;
+    Vector<T, dim> sum;
     for (int i = 0; i < dim; ++i)
         sum.data[i] = data[i] + otherVector.data[i];
 
