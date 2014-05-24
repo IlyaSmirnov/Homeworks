@@ -1,13 +1,19 @@
-#include <iostream>
 #include <cstdlib>
 #include "HashInterface.h"
 
 using namespace std;
 
-enum StatesHashTable {exitProgram, add, search, del, change, details };
-enum HashFunctions {zero, firstHF, secondHF};
+enum StatesHashTable { exitProgram, add, search, del, change, details };
+enum HashFunctions { zero, firstHF, secondHF };
 
-int main() {
+void initString(char *string, int length)
+{
+    for (int i = 0; i < length; i++)
+        string[i] = '\0';
+}
+
+int main()
+{
     HashInterface a;
     a.numberHF = 0;
     int state = -1;
@@ -18,47 +24,61 @@ int main() {
     cout << "3 = delete\n";
     cout << "4 = switch fucntions\n";
     cout << "5 = print static\n";
-    for (; state != exitProgram ;) {
+
+    for (; state != exitProgram;)
+    {
         cout << "enter state: \n";
         cin >> state;
-        if (state == add) {
+
+        if (state == add)
+        {
             a.addHT();
         }
-        if (state == search) {
+
+        if (state == search)
+        {
             cout << "enter the string\n";
             char buffer[maxLengthWord];
-            for (int i = 0; i < maxLengthWord; i++)
-            buffer[i] = '\0';
+            initString(buffer, maxLengthWord);
+
             cin >> buffer;
             a.searchHT(buffer);
         }
-        if (state == del) {
+
+        if (state == del)
+        {
             cout << "enter the string\n";
             char buffer[maxLengthWord];
-            for (int i = 0; i < maxLengthWord; i++)
-            buffer[i] = '\0';
+            initString(buffer, maxLengthWord);
             cin >> buffer;
             a.deleteHT(buffer);
         }
-        if (state == details) {
+
+        if (state == details)
+        {
             a.staticHT();
         }
-        if (state == change) {
+
+        if (state == change)
+        {
             int stateSwitch = -1;
             cout << "Switch menu:\n";
             cout << "0 = exit from switch\n";
             cout << "1 = first hash fuction (set as default)\n";
             cout << "2 = second hash fuction\n";
             cin >> stateSwitch;
-            if (stateSwitch == firstHF) {
+            if (stateSwitch == firstHF)
+            {
                 a.numberHF = 0;
             }
-            if (stateSwitch == secondHF) {
+
+            if (stateSwitch == secondHF)
+            {
                 a.numberHF = 1;
             }
-
         }
-    };
+    }
+
     cout << "L.A. Goodbay\n";
 
     return 0;

@@ -11,6 +11,8 @@ QT       -= gui
 TARGET = untitled25
 CONFIG   += console
 CONFIG   -= app_bundle
+CONFIG += console
+CONFIG += c++11
 
 TEMPLATE = app
 
