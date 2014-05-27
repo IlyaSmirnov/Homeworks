@@ -56,12 +56,12 @@ QString TicTacToe::getText(QPair<int, int> coordinates)
 
 int TicTacToe::check()
 {
-    if (isFull())
-        return 0;
-
     if (!checkWin())
     {
         player = 1 - player;
+
+        if (isFull())
+            return 0;
 
         return 3;
     }
@@ -83,18 +83,14 @@ bool TicTacToe::checkWin()
 { 
     bool check = true;
     for (int i = 0; i < size - 1; ++i)
-    {
         if ((states[qMakePair(i, size - 1 - i)] == none) || (states[qMakePair(i, size - 1 - i)] != states[qMakePair(i + 1, size - 2 - i)]))
         {
             check = false;
             break;
         }
 
-        if (!check)
-            continue;
-
+    if (check)
         return true;
-    }
 
     for (int i = 0; i < size; ++i)
     {
@@ -110,7 +106,6 @@ bool TicTacToe::checkWin()
             continue;
 
         return true;
-
     }
 
     for (int i = 0; i < size; i++)
@@ -137,14 +132,8 @@ bool TicTacToe::checkWin()
             check = false;
             break;
         }
-
-        if (!check)
-            continue;
-
-        return true;
-
     }
 
-    return false;
+    return check;
 }
 
