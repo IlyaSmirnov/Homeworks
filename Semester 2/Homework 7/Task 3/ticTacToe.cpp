@@ -80,24 +80,27 @@ bool TicTacToe::isFull()
 }
 
 bool TicTacToe::checkWin()
-{
+{ 
     bool check = true;
-
     for (int i = 0; i < size - 1; ++i)
+    {
         if ((states[qMakePair(i, size - 1 - i)] == none) || (states[qMakePair(i, size - 1 - i)] != states[qMakePair(i + 1, size - 2 - i)]))
         {
             check = false;
             break;
         }
 
-    if (check)
-        return true;
+        if (!check)
+            continue;
 
-    check = true;
+        return true;
+    }
+
     for (int i = 0; i < size; ++i)
     {
+        check = true;
         for (int j = 0; j < size - 1; ++j)
-            if ((states[qMakePair(i,  j)] == none) || (states[qMakePair(i, j)] != states[qMakePair(i, j + 1)]))
+            if ((states[qMakePair(i, j)] == none) || (states[qMakePair(i, j)] != states[qMakePair(i, j + 1)]))
             {
                 check = false;
                 break;
@@ -107,13 +110,14 @@ bool TicTacToe::checkWin()
             continue;
 
         return true;
+
     }
 
-    check = true;
-    for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; i++)
     {
+        check = true;
         for (int j = 0; j < size - 1; ++j)
-            if ((states[qMakePair(j, i)] == none) || (states[qMakePair(j, i)] != states[qMakePair(j + 1, i)]))
+            if (states[qMakePair(j, i)] == none || states[qMakePair(j, i)] != states[qMakePair(j + 1, i)])
             {
                 check = false;
                 break;
@@ -127,16 +131,20 @@ bool TicTacToe::checkWin()
 
     check = true;
     for (int i = 0; i < size - 1; ++i)
+    {
         if ((states[qMakePair(i, i)] == none) || (states[qMakePair(i, i)] != states[qMakePair(i + 1, i + 1)]))
         {
             check = false;
             break;
         }
 
-    if (check)
+        if (!check)
+            continue;
+
         return true;
 
-    return false;
+    }
 
+    return false;
 }
 
