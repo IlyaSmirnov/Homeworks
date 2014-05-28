@@ -16,10 +16,11 @@ TARGET = 282
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    bash.cpp
+    bash.cpp \
+   
 
 HEADERS  += \
-    bash.h
-
+    bash.h \
+    
 FORMS    += \
     bash.ui
