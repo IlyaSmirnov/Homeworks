@@ -141,7 +141,7 @@ void LocalNet::showCurrentState()
 	cout << "\n";
 }
 
-void LocalNet::startToCheckSystemState()
+void LocalNet::startToCheckSystemNet()
 {
 
 
