@@ -1,28 +1,37 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2014-12-20T22:36:41
+# Project created by QtCreator 2014-12-22T00:51:57
 #
 #-------------------------------------------------
-
-QT       += testlib
 
 QT       += core
 
 QT       -= gui
 
+QT       += testlib
+
 TARGET = 321
 CONFIG   += console
 CONFIG   -= app_bundle
-CONGIF += c++11
 
 TEMPLATE = app
 
 
 SOURCES += main.cpp \
     computer.cpp \
-    localnet.cpp
+    localnet.cpp \
+    windowscomputer.cpp \
+    linuxcomputer.cpp \
+    almostrandom.cpp \
+    random.cpp \
+    generator.cpp
 
 HEADERS += \
     computer.h \
     localnet.h \
-    tests.h
+    tests.h \
+    windowscomputer.h \
+    linuxcomputer.h \
+    almostrandom.h \
+    random.h \
+    generator.h

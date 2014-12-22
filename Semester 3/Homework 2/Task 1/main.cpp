@@ -1,7 +1,12 @@
+#include <QCoreApplication>
 #include "tests.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	Test test;
-	QTest::qExec(&test);
+	QCoreApplication a(argc, argv);
+
+	Tests tests;
+	QTest::qExec(&tests);
+
+	return a.exec();
 }

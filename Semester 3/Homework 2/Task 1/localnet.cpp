@@ -4,39 +4,27 @@ using namespace std;
 
 LocalNet::LocalNet() : numberOfInfected(0)
 {
-	for (int i = 0; i < maxSizeOfNet; ++i)
-	{
-		for (int j = 0; j < maxSizeOfNet; ++j)
-		{
-			this->matrix[i][j] = 0;
-		}
-	}
+	QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(makeTurn()));
 }
 
-LocalNet::LocalNet(int numberOfComputers, QList<Computer> computers, int matrix[maxSizeOfNet][maxSizeOfNet], int numberOfInfected)
+int LocalNet::getNumberOfInfected()
+{
+	return numberOfInfected;
+}
+
+LocalNet::LocalNet(int numberOfComputers, QList<Computer> computers, QVector<QVector<int> > matrix, int numberOfInfected, Generator *generator)
 {
 	LocalNet();
+	matrix.resize(numberOfComputers);
 	this->computers = computers;
 
-	for (int i = 0; i < numberOfComputers; ++i)
-	{
-		for (int j = 0; j < numberOfComputers; ++j)
-		{
-			this->matrix[i][j] = matrix[i][j];
-		}
-	}
+	this->matrix = matrix;
+
+	this->generator = generator;
 
 	this->numberOfInfected = numberOfInfected;
-}
 
-void delay()
-{
-	QTime dieTime= QTime::currentTime().addSecs(3);
-
-	while(QTime::currentTime() < dieTime)
-	{
-		QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-	}
+	QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(makeTurn()));
 }
 
 void LocalNet::setNetFromConsole()
@@ -55,7 +43,12 @@ void LocalNet::setNetFromConsole()
 			os = os + temp;
 		}
 
-		computers.append(Computer(static_cast<OS>(QVariant(os).toInt()), i));
+		if (os == "Linux")
+		{
+		computers.append(LinuxComputer(i));
+		}
+		else
+			computers.append(WindowsComputer(i));
 		os = "";
 	}
 
@@ -77,17 +70,22 @@ void LocalNet::setNetFromConsole()
 
 void LocalNet::makeTurn()
 {
+	if (numberOfInfected == computers.size())
+	{
+		timer.stop();
+	}
+
 	if (numberOfInfected == 0)
 	{
 		for (int i = 0; i < computers.size(); ++i)
-			if (computers[i].isPossibleToInfect())
+			if (isPossibleToInfect(computers[i]))
 			{
 				computers[i].infect();
 				++numberOfInfected;
-				delay();
+				showCurrentState();
 				return;
 			}
-		delay();
+		showCurrentState();
 		return;
 	}
 
@@ -104,14 +102,14 @@ void LocalNet::makeTurn()
 
 	for (int i = 0; i < computersInDanger.size(); ++i)
 	{
-		if (computersInDanger[i].isPossibleToInfect())
+		if (isPossibleToInfect(computersInDanger[i]))
 		{
 			computers[computersInDanger[i].getNumber()].infect();
 			++numberOfInfected;
 		}
 	}
 
-	delay();
+	showCurrentState();
 }
 
 void LocalNet::showCurrentState()
@@ -141,19 +139,14 @@ void LocalNet::showCurrentState()
 	cout << "\n";
 }
 
-void LocalNet::startToCheckSystemNet()
+void LocalNet::startToCheckNetState()
 {
-
-
-	while ((numberOfInfected != computers.size()))
-	{
-		{
-			showCurrentState();
-			makeTurn();
-		}
-	}
-
-	showCurrentState();
+	timer.start(1000);
 
 	cout << "All computers are infected now\n";
+}
+
+bool LocalNet::isPossibleToInfect(Computer computer)
+{
+	return (generator->getRandom() < computer.getProbability());
 }
