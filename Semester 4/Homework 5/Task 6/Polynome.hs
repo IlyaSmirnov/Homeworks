@@ -21,6 +21,7 @@ instance Num(Monome) where
 		| b == d = Monome ((a + c), b)
 		| otherwise = error "Could not add monomes in different powers"
 	Monome (a, b) * Monome (c, d) = Monome ((a * c), (b + d))
+	negate(Monome (a, b)) = Monome((negate a), b)
 	abs(Monome (a, b)) = Monome((abs a), b)
 	signum (Monome (a, b)) = Monome ((signum a), 0)
 	fromInteger a = Monome ((fromInteger a) :: Float, 0)
@@ -58,5 +59,7 @@ instance Num(Polynome) where
 	(Polynome x) + (Polynome y) = simplify $ Polynome $ (x ++ y)
 	(Polynome x) * (Polynome y) = simplify $ Polynome $ [a * b | a <- x, b <- y]
 	abs(Polynome x) = Polynome (map (abs) x)
+	negate(Polynome x) = Polynome (map (negate) x)
 	signum (Polynome x) = Polynome [signum $ maximum $ x]
 	fromInteger a = Polynome [(fromInteger a) :: Monome]
+	

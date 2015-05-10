@@ -1,6 +1,7 @@
 import System.Random
 data Tree a = Empty
             | Node a (Tree a) (Tree a)
+			deriving (Eq, Show)
 			
 mapT :: (a ->b) -> Tree a -> Tree b
 mapT _ Empty = Empty

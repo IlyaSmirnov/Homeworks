@@ -1,12 +1,15 @@
 data Tree a = Leaf a | Branch (Tree a) a (Tree a)
 	deriving (Show)
 
-filterTree :: (a -> Bool) -> Tree a -> [a]
+findWithCondition :: Tree a -> (a -> Bool) -> Maybe a
+findWithCondition (Leaf a) f = if (f a)
+                            then Just a
+                            else Nothing
 
-filterTree p (Leaf x) = if p x 
-						 then [x]
-						 else []
-
-filterTree p (Branch l x r) = if p x
-                               then concat [[x], filterTree p l, filterTree p r]
-                               else concat [filterTree p l, filterTree p r]
+findWithCondition (Branch a b c) f | f b = Just b
+                            | otherwise = goDeep (findWithCondition a f) (findWithCondition c f)
+                                            where
+                                              goDeep :: Maybe a -> Maybe a -> Maybe a
+                                              goDeep Nothing Nothing = Nothing
+                                              goDeep (Just x) _ = Just x
+                                              goDeep _ (Just x) = Just x
